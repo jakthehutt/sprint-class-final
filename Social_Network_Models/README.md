@@ -19,20 +19,24 @@ This directory explores advanced statistical and sociological techniques to anal
   * *Intuition:* ERGMs analyze cross-sectional snapshot network data. They test structural theories of social behavior by simulating network structures based on localized micro-processes (like reciprocity, transitivity, or homophily) to predict macro-level structural formations. Interpretation of parameters is similar to log-odds in logistic regressions. 
   * *Good at:* Modeling the processes of tie formation and testing strict hypotheses about how a global structure of an empirical network was produced. Robustly implemented via packages like `statnet`/`ergm` in R.
   * *Bad at:* Examining explicit dynamic evolution over time. While temporal extensions (TERGMs) exist, recent literature (e.g., Block et al. 2018) argues they lack consistent interpretations on tie-level probabilities and true network change processes compared to continuous-time models.
+  * *Examples of Use:* Analyzing static cross-sectional phenomena, for example, identifying whether homophily (like race or gender) structures friendship ties in a single-time snapshot of high-school teenagers.
 
 * **Stochastic Actor-Oriented Models (SAOMs):**
   * *Intuition:* A process-based, continuous-time approach for longitudinal network analysis. SAOMs use an objective function and a rate function to model how networks evolve over time via "mini-steps" as consequence of actors continuously forming, maintaining, or deleting ties.
   * *Good at:* Handling longitudinal panel data, explicit network evolution, and the co-evolution of networks alongside actor behavior (or multiplex and bi-partite networks). They offer consistent interpretation at the micro-level.
   * *Bad at:* Computationally intensive and complex to specify. They rely heavily on Simulation approximation via Method of Moments and Markov Chains, which can lead to convergence issues or very long estimation times. Typically requires rich multi-wave longitudinal panel data. 
+  * *Examples of Use:* Investigating peer-influence versus selection over time, such as whether high school students become friends because they share similar drinking behaviors, or if they change their drinking behaviors because they became friends.
 
 * **Stochastic Block Models (SBMs):** 
   * *Intuition:* A methodological approach for finding blocks of structurally equivalent nodes. Nodes in the same block share similar probabilities of connection to other nodes across the network. 
   * *Good at:* Inductively identifying hidden community structures, cohesive subgroups, or latent social roles without prior knowledge of node attributes. 
   * *Bad at:* Not well-suited for modeling the granular micro-level behavioral mechanisms (like "does an actor close a triad?") compared to ERGM/SAOM frameworks, but rather focuses on partitioning the macro-level structure.
+  * *Examples of Use:* Taking an unstructured, poorly understood, dense network (e.g., historical alliance networks) and inductively discovering latent factions (blocks) based solely on who connects to whom.
 
 * **Relational Hyper Event Models (RHEMs):**
   * *Intuition:* Advanced modeling for analyzing specific sequences of interactions and communication between actors in continuous time.
   * *Good at:* Fine-grained temporal data where exact timing matters (e.g. timestamps of emails or interactions), examining rates and discrete events instead of static relationships.
+  * *Examples of Use:* Parsing timestamped corporate email logs to see who influences communication rates and sequences minute-by-minute throughout a workday.
 
 ### Model Estimation and Diagnostics
 * **Estimation Techniques:** Approximating parameters for complex models often relies on Markov Chain Monte Carlo Maximum Likelihood Estimation (MCMC-MLE) for ERGMs, or Method of Moments (MoM) for SAOMs.
