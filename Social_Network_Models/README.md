@@ -44,6 +44,8 @@ This directory explores advanced statistical and sociological techniques to anal
 
 ### Model Estimation and Diagnostics
 * **Estimation Techniques:** Approximating parameters for complex models often relies on Markov Chain Monte Carlo Maximum Likelihood Estimation (MCMC-MLE) for ERGMs, or Method of Moments (MoM) for SAOMs.
+  * *What is MoM?* The Method of Moments is an estimation technique used primarily for SAOMs. It works by simulating the network evolution process repeatedly, adjusting the model's parameters until the statistics (the "moments", like the number of reciprocal ties or triangles) of the simulated networks match the observed statistics in the actual real-world data.
+  * *High School Intuition:* Imagine trying to bake a chocolate chip cookie that tastes exactly like your grandma's. You keep tweaking your recipe (the model parameters) and baking trial batches (the simulations) until the sweetness and chewiness (the "moments") of your cookies perfectly match the ones your grandma made (the real-world data).
 * **Goodness of Fit (GOF):** A critical post-estimation step where networks are heavily simulated from the estimated parameters to verify if the properties of the simulated networks closely match the original empirical data.
 
 ### Key Theoretical Concepts
