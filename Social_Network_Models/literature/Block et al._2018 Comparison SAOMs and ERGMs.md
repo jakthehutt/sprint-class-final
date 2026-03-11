@@ -1,0 +1,11757 @@
+Social
+ Networks
+ 52
+ (2018)
+ 180–191
+Contents
+ lists
+ available
+ at
+ ScienceDirect
+Social
+ Networks
+jo
+ u
+ r
+ n
+ al
+ hom
+ ep
+ age:
+ www.elsevier.com/locat
+ e/socnet
+Change
+ we
+ can
+ believe
+ in:
+ Comparing
+ longitudinal
+ network
+ models
+on
+ consistency,
+ interpretability
+ and
+ predictive
+ power
+Per
+ Block a,∗,  Johan
+ Koskinen b, James
+ Hollway c,  Christian
+ Steglich d,  Christoph
+ Stadtfeld a
+a Chair
+ of
+ Social
+ Networks,
+ ETH
+ Zürich,
+ Switzerland
+b The
+ Mitchell
+ Centre
+ for
+ SNA,
+ and
+ Social
+ Statistics
+ Discipline
+ Area,
+ University
+ of
+ Manchester,
+ United
+ Kingdom
+c Department
+ of
+ International
+ Relations/Political
+ Science,
+ Graduate
+ Institute
+ Geneva,
+ Switzerland
+d The
+ Institute
+ for
+ Analytical
+ Sociology,
+ Linköping
+ University,
+ Sweden
+ AND
+ Department
+ of
+ Sociology/ICS,
+ University
+ of
+ Groningen,
+ The
+ Netherlands
+a
+ r  t
+ i c  l e  
+i  n  f  o
+Article
+ history:
+Received
+ 3
+ January
+ 2017
+Received
+ in
+ revised
+ form
+ 26
+ July
+ 2017
+Accepted
+ 4
+ August
+ 2017
+Available
+ online
+ 23
+ August
+ 2017
+Keywords:
+SAOM
+ERGM
+TERGM
+Longitudinal
+ network
+ models
+Network
+ evolution
+Out-of-sample
+ testing
+Parameter
+ interpretation
+Auto-regressive
+ network
+ models
+Process-based
+ network
+ models
+a
+ b
+ s
+ t  r  a
+ c  t
+While
+ several  models  for analysing
+ longitudinal
+ network  data  have  been
+ proposed,
+ their  main  differ-
+ences,
+ especially
+ regarding
+ the  treatment
+ of  time,  have  not  been
+ discussed
+ extensively
+ in the
+ literature.
+However,
+ differences
+ in  treatment
+ of time  strongly
+ impact
+ the  conclusions
+ that  can
+ be  drawn  from
+ data.
+In
+ this  article  we  compare
+ auto-regressive
+ network
+ models  using  the  example
+ of TERGMs
+ –  a  temporal
+extensions
+ of ERGMs
+ – and  process-based
+ models
+ using  SAOMs
+ as an  example.
+ We  conclude  that
+ the
+TERGM
+ has,  in contrast
+ to the  ERGM,
+ no  consistent
+ interpretation
+ on  tie-level  probabilities,
+ as  well as  no
+consistent
+ interpretation
+ on  processes
+ of network
+ change.
+ Further,
+ parameters
+ in  the  TERGM are
+ strongly
+dependent
+ on  the  interval
+ length
+ between
+ two  time-points.
+ Neither
+ limitation
+ is  true  for  process-based
+network
+ models
+ such  as  the  SAOM.  Finally,
+ both  compared
+ models
+ perform  poorly  in  out-of-sample
+prediction
+ compared
+ to  trivial
+ predictive
+ models.
+©
+ 2017  Elsevier
+ B.V.  All  rights
+ reserved.
+1.
+ Introduction
+The
+ study
+ of
+ social
+ networks
+ is
+ increasingly
+ concerned
+ with
+modelling
+ network
+ change
+ over
+ time,
+ as
+ longitudinal
+ analysis
+ is
+usually
+ better
+ equipped
+ for
+ ﬁnding
+ explanations
+ and
+ testing
+ the-
+ories
+ about
+ the
+ evolution
+ of
+ networks
+ as
+ well
+ as
+ the
+ impact
+ its
+structure
+ has
+ on
+ constituent
+ nodes
+ (e.g.
+ Steglich
+ et
+ al.,
+ 2010).
+ Net-
+work
+ analysis
+ over
+ time
+ commonly
+ uses
+ network
+ panel
+ data:
+ a
+network
+ structure
+ among
+ the
+ same
+ set
+ of
+ nodes
+ that
+ is
+ observed
+at
+ two
+ or
+ more
+ time
+ points.
+ By
+ now
+ (this
+ is
+ written
+ in
+ early
+ 2017),
+several
+ statistical
+ approaches
+ are
+ available
+ to
+ analyse
+ such
+ data
+sets.
+ The
+ most
+ widely
+ used
+ are
+ the
+ stochastic
+ actor-oriented
+ model
+(SAOM;
+ Snijders
+ et
+ al.,
+ 2010b) and
+ several
+ extensions
+ to
+ the
+ expo-
+nential
+ random
+ graph
+ model
+ (ERGM;
+ Lusher
+ et
+ al.,
+ 2013).
+ These
+models
+ and
+ variations
+ may
+ appear
+ almost
+ indistinguishable
+ to
+ sci-
+entists
+ interested
+ in
+ applying
+ inferential
+ methods
+ to
+ network
+ panel
+data.
+ However,
+ they
+ rest
+ on
+ quite
+ different
+ statistical
+ assumptions
+that
+ strongly
+ affect
+ the
+ kind
+ of
+ inference
+ one
+ can
+ draw
+ from
+ the
+∗Corresponding
+ author.
+E-mail
+ address:
+ per.block@gess.ethz.ch
+ (P.
+ Block).
+estimated
+ model
+ parameters
+ and,
+ thus,
+ the
+ kind
+ of
+ questions
+ that
+can
+ be
+ answered
+ with
+ each
+ method.
+While
+ statistical
+ models
+ can
+ be
+ compared
+ on
+ many
+ dimensions,
+we
+ mainly
+ focus
+ in
+ this
+ article
+ on
+ differences
+ in
+ how
+ they
+ treat
+time.
+ In
+ particular,
+ we
+ discuss
+ the
+ difference
+ between
+ discrete-
+time,
+ auto-regressive
+ models
+ and
+ continuous-time,
+ process-based
+models.
+ Due
+ to
+ its
+ increased
+ use
+ (e.g.
+ in
+ McFarland
+ et
+ al.,
+ 2014)
+and
+ recent
+ claims
+ about
+ its
+ advantage
+ relative
+ to
+ other
+ models
+ for
+network
+ panel
+ data
+ (Desmarais
+ and
+ Cranmer
+ 2012;
+ Leifeld
+ and
+Cranmer
+ 2016),
+ we  choose
+ the
+ TERGM
+ (or
+ temporal
+ ERGM)
+ for
+this
+ comparison
+ case
+ to
+ represent
+ auto-regressive
+ models.1 The
+continuous-time
+ model
+ we  discuss
+ for
+ comparison
+ is
+ the
+ SAOM.
+Note
+ that
+ for
+ ERGMs
+ both
+ continuous-time
+ and
+ auto-regressive
+extensions
+ have
+ been
+ proposed
+ –
+ we  focus
+ on
+ the
+ latter
+ group.
+The
+ purpose
+ is
+ to
+ compare
+ the
+ principles
+ of
+ auto-regressive
+ and
+continuous-time
+ network
+ models
+ and
+ not
+ the
+ relative
+ merits
+ of
+either
+ particular
+ model
+ –
+ the
+ two
+ cases
+ can
+ be
+ seen
+ as
+ represen-
+1 We  point
+ out
+ commonalities
+ and
+ differences
+ between
+ the
+ TERGM
+ (as
+ deﬁned
+in
+ Desmarais
+ and
+ Cranmer
+ 2012;
+ Leifeld
+ and
+ Cranmer
+ 2016)
+ and
+ other
+ longitudinal
+variants
+ of
+ the
+ ERGM
+ where
+ appropriate.
+http://dx.doi.org/10.1016/j.socnet.2017.08.001
+0378-8733/©
+ 2017
+ Elsevier
+ B.V.
+ All
+ rights
+ reserved.
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+181
+tations
+ of
+ their
+ respective
+ model
+ classes.
+ This
+ article
+ highlights,
+ by
+way
+ of
+ illustration,
+ the
+ most
+ important
+ differences
+ in
+ assumptions
+and
+ their
+ interpretive
+ implications
+ between
+ these
+ approaches
+ and
+thus
+ facilitates
+ the
+ applied
+ researcher’s
+ decision
+ which
+ to
+ use
+ in
+their
+ own
+ research.
+1.1.
+ Dimensions
+ of
+ comparison
+When
+ comparing
+ statistical
+ models
+ it
+ is
+ tempting
+ to
+ ask
+ which
+model
+ is
+ “better”.
+ However,
+ “better”
+ implicates
+ at
+ least
+ two
+ quite
+different
+ dimensions:
+ explanation
+ and
+ prediction.
+ On
+ the
+ one
+ hand,
+it
+ has
+ been
+ argued
+ that
+ accurate
+ prediction
+ is
+ a
+ chief
+ criterion
+ of
+a
+ “good”
+ model
+ (Friedman
+ 1953;
+ Jasso
+ 1988).
+ Intuitively
+ a
+ “good”
+model
+ should
+ be
+ able
+ to
+ extrapolate
+ accurately
+ into
+ the
+ future,
+which
+ can
+ be
+ tested
+ for
+ a
+ single
+ dataset
+ by
+ simple
+ out-of-sample
+prediction.
+ At
+ the
+ same
+ time,
+ the
+ criterion
+ for
+ what
+ should
+ be
+ pre-
+dicted
+ correctly
+ in
+ a
+ model
+ with
+ dependent
+ data
+ (such
+ as
+ networks)
+is
+ not
+ trivial,
+ as
+ a
+ network
+ is
+ more
+ than
+ just
+ an
+ series
+ of
+ indepen-
+dent
+ tie
+ observations
+ but
+ also
+ the
+ structures
+ that
+ these
+ ties
+ form
+(see
+ discussion
+ in
+ Section
+ 5).
+On
+ the
+ other
+ hand,
+ it
+ has
+ been
+ argued
+ that
+ the
+ endeavour
+ of
+social
+ science
+ is
+ not
+ to
+ predict,
+ but
+ to
+ explain
+ and
+ understand
+the
+ world
+ (Hedström
+ 2005;
+ Elster
+ 2007).
+ Models
+ with
+ absurd
+assumptions
+ or
+ intractable
+ algorithms
+ can
+ generate
+ fairly
+ accurate
+predictions,
+ but
+ teach
+ us
+ little
+ about
+ the
+ world.
+ Social
+ mechanisms,
+by
+ contrast,
+ can
+ help
+ us
+ explain
+ the
+ social
+ world
+ and
+ inform
+ our
+understanding
+ of
+ our
+ own
+ and
+ others’
+ behaviour,
+ but
+ their
+ concate-
+nation
+ in
+ complex
+ ways
+ means
+ that
+ only
+ in
+ the
+ simplest
+ of
+ systems
+can
+ we
+ expect
+ this
+ to
+ result
+ in
+ accurate
+ prediction
+ at
+ a
+ micro-level.
+Indeed,
+ even
+ models
+ with
+ poor
+ predictive
+ power
+ can
+ generate
+ valu-
+able
+ insights
+ (see
+ also
+ Epstein
+ 2008).
+ In
+ this
+ line
+ of
+ reasoning,
+ a
+ good
+model
+ is
+ characterised
+ by
+ reasonable
+ assumptions,
+ as
+ well
+ as
+ by
+clear
+ interpretability
+ of
+ parameters
+ in
+ light
+ of
+ social
+ mechanisms.
+In
+ this
+ paper,
+ we
+ do
+ not
+ necessarily
+ advocate
+ for
+ one
+ or
+ the
+ other
+position,
+ but
+ investigate
+ how
+ different
+ model
+ assumptions
+ make
+them
+ applicable
+ to
+ different
+ questions
+ and
+ thus
+ to
+ different
+ empir-
+ical
+ problems.
+ As
+ such,
+ we
+ elaborate
+ what
+ conclusions
+ can
+ be
+ drawn
+from
+ estimated
+ parameters
+ using
+ the
+ SAOM
+ or
+ the
+ TERGM.
+The
+ remainder
+ of
+ the
+ article
+ is
+ organised
+ as
+ follows.
+ We  ﬁrst
+introduce
+ the
+ two
+ different
+ longitudinal/temporal
+ network
+ mod-
+els
+ (Section
+ 2),
+ and
+ highlight
+ their
+ main
+ features
+ from
+ a
+ statistical
+point
+ of
+ view.
+ The
+ ﬁrst
+ main
+ distinguishing
+ feature
+ of
+ the
+ model
+ that
+is
+ discussed
+ concerns
+ whether
+ it
+ is
+ actor-oriented
+ or
+ tie-oriented
+(Section
+ 3).
+ Subsequently,
+ the
+ treatment
+ of
+ time
+ is
+ examined.
+ Focus
+is
+ on
+ the
+ interpretation
+ of
+ parameters
+ and
+ model
+ consistency
+ with
+regards
+ to
+ the
+ differences
+ between
+ auto-regressive
+ compared
+ to
+process-based
+ modelling
+ (Section
+ 4).
+ The
+ different
+ treatment
+ of
+time
+ and
+ how
+ that
+ inﬂuences
+ parameters
+ is
+ shown
+ in
+ an
+ empirical
+example.
+ Finally,
+ we
+ demonstrate
+ that
+ both
+ models
+ perform
+ poorly
+in
+ out-of-sample
+ prediction
+ (Section
+ 5) across
+ two
+ datasets,
+ sug-
+gesting
+ that
+ we
+ need
+ to
+ be
+ careful
+ as
+ to
+ the
+ purposes
+ of
+ longitudinal
+network
+ research.
+2.
+ The
+ models
+A
+ social
+ network
+ needs
+ to
+ be
+ understood
+ as
+ a
+ system
+ of
+ interde-
+pendent
+ units.
+ Whether
+ one
+ is
+ interested
+ in
+ the
+ details
+ of
+ network
+dependencies
+ or
+ just
+ needs
+ to
+ control
+ for
+ them,
+ research
+ on
+ net-
+works
+ requires
+ statistical
+ tools
+ that
+ can
+ adequately
+ deal
+ with
+ this
+challenge.
+ The
+ model
+ families
+ that
+ most
+ explicitly
+ deal
+ with
+ depen-
+dencies
+ for
+ such
+ inferential-statistical
+ analysis
+ of
+ social
+ network
+data
+ are
+ exponential
+ random
+ graph
+ models
+ (ERGMs;
+ Frank
+ and
+Strauss,
+ 1986;
+ Pattison
+ and
+ Wasserman,
+ 1999;
+ Snijders
+ et
+ al.,
+ 2006;
+Lusher
+ et
+ al.,
+ 2013)
+ and
+ stochastic
+ actor-oriented
+ models
+ for
+ network
+evolution
+ (SAOMs;
+ Snijders
+ 2001,
+ 2005;
+ Snijders
+ et
+ al.,
+ 2010b).2
+2.1.
+ Exponential
+ random
+ graph
+ models
+ERGMs
+ were
+ originally
+ formulated
+ for
+ cross-sectional
+ data,
+ i.e.,
+ a
+single
+ observation
+ of
+ a
+ network.
+ The
+ guiding
+ idea
+ behind
+ the
+ model
+family
+ is
+ to
+ express
+ the
+ probability
+ of
+ observing
+ a
+ given
+ network
+ as
+a
+ function
+ of
+ subgraphs
+ in
+ this
+ network
+ (called
+ statistics
+ denoted
+z (x) on
+ the
+ network
+ x),
+ e.g.
+ the
+ reciprocated
+ dyad,
+ or
+ the
+ transitive
+triplet.
+ These
+ subgraphs
+ express
+ local
+ dependencies
+ between
+ tie
+variables
+ (reciprocity
+ and
+ transitive
+ clustering,
+ respectively).
+ At
+ the
+heart
+ of
+ the
+ ERGM
+ lies
+ a
+ linear
+ predictor
+ that
+ weighs
+ the
+ prevalence
+of
+ statistics
+ in
+ the
+ network
+ by
+ the
+ parameter
+ vector
+ :
+
+k
+kzk (x)
+What
+ is
+ considered
+ local
+ differs
+ between
+ model
+ speciﬁcations,
+with
+ the
+ general
+ rule
+ that
+ speciﬁcations
+ including
+ more
+ complex
+subgraphs
+ instantiate
+ more
+ dependency
+ (Pattison
+ and
+ Snijders,
+2013).
+ Model
+ parameters
+ k can
+ be
+ interpreted
+ as
+ expressing,
+ on
+the
+ tie-level,
+ the
+ probability
+ of
+ observing
+ a
+ speciﬁc
+ tie,
+ given
+ the
+rest
+ of
+ the
+ graph,
+ or
+ on
+ the
+ network-level,
+ as
+ indicating
+ tendencies
+of
+ a
+ graph
+ to
+ exhibit
+ certain
+ sub-structures
+ relative
+ to
+ what
+ would
+be
+ expected
+ from
+ a
+ model
+ not
+ containing
+ this
+ parameter
+ (this
+ is
+discussed
+ further
+ in
+ Section
+ 4).
+Longitudinal
+ variants
+ of
+ the
+ ERGM
+ come
+ in
+ two
+ forms,
+ the
+continuous-time
+ and
+ the
+ discrete-time
+ version.
+ The
+ ﬁrst,
+ called
+ lon-
+gitudinal
+ exponential
+ random
+ graph
+ models
+ (LERGMs;
+ Snijders
+ and
+Koskinen
+ 2013;
+ Koskinen
+ et
+ al.,
+ 2015),
+ is
+ a
+ longitudinal,
+ continuous-
+time
+ form
+ of
+ the
+ ERGM,
+ in
+ the
+ sense
+ that
+ changes
+ to
+ the
+ network
+are
+ modelled
+ using
+ the
+ conditional
+ probabilities
+ of
+ the
+ ERGM
+ and
+the
+ process
+ has
+ the
+ cross-sectional
+ ERGM
+ as
+ its
+ limiting
+ distribu-
+tion.
+ In
+ its
+ treatment
+ of
+ time,
+ the
+ LERGM
+ is
+ identical
+ to
+ the
+ SAOM,
+thus,
+ we
+ do
+ not
+ focus
+ on
+ the
+ LERGM
+ in
+ this
+ article
+ –
+ the
+ interested
+reader
+ can
+ generalise
+ from
+ our
+ discussion.
+The
+ most
+ prominent
+ discrete-time
+ variant
+ of
+ the
+ ERGM
+ is
+ the
+temporal
+ exponential
+ random
+ graph
+ model
+ (TERGM;
+ Robins
+ and
+Pattison
+ 2001, Hanneke,
+ Fu
+ and
+ Xing
+ 2010;
+ Desmarais
+ and
+ Cranmer
+2012).3 The
+ model
+ is
+ based
+ on
+ the
+ idea
+ of
+ panel
+ regression.
+ In
+ a
+sequence
+ of
+ observations,
+ lagged
+ earlier
+ observations
+ or
+ derived
+information
+ thereof
+ can
+ be
+ used
+ as
+ predictors
+ for
+ later
+ observations.
+In
+ other
+ words,
+ some
+ of
+ the
+ statistics
+ z (x) are direct
+ functions
+ of
+ an
+earlier
+ realisation
+ of
+ the
+ network.
+ In
+ its
+ most
+ basic
+ form,
+ the
+ TERGM
+is
+ a
+ conditional
+ ERGM
+ with
+ an
+ earlier
+ observation
+ of
+ the
+ network
+occurring
+ among
+ the
+ predictors.
+ It
+ is
+ this
+ basic
+ TERGM
+ (as
+ presented
+in
+ Desmarais
+ and
+ Cranmer
+ 2012;
+ Leifeld
+ and
+ Cranmer
+ 2016) that
+ we
+focus
+ on
+ in
+ this
+ article.
+ While
+ other
+ statistics
+ of
+ a
+ previous
+ network
+realisation
+ (e.g.
+ past
+ two
+ paths)
+ can
+ be
+ included
+ in
+ the
+ model
+ as
+ pre-
+dictors
+ (e.g.
+ to
+ model
+ transitivity
+ over
+ time),
+ this
+ does
+ not
+ change
+the
+ fundamental
+ challenges
+ of
+ parameter
+ interpretability
+ or
+ time
+dependence
+ of
+ parameters
+ modelling
+ dependence
+ as
+ discussed
+ in
+Section
+ 4; consequently,
+ we  only
+ deal
+ with
+ these
+ extended
+ speci-
+ﬁcations,
+ when
+ necessary,
+ in
+ footnotes.
+ The
+ interested
+ reader
+ can
+generalise.4
+2 There
+ is
+ a
+ host
+ of
+ models
+ that
+ allow
+ for
+ dependent
+ network
+ ties
+ (such
+ as
+ the
+ p2
+model,
+ van
+ Duijn
+ et
+ al.,
+ 2004; and
+ an
+ ever-expanding
+ class
+ of
+ latent
+ variable
+ models,
+see
+ for
+ example
+ the
+ review
+ by
+ Salter-Townshend
+ et
+ al.,
+ 2012) that
+ we
+ do
+ not
+ discuss
+here.
+3 Given
+ the
+ limited
+ space
+ in
+ one
+ article,
+ we
+ do
+ not
+ discuss
+ other
+ discrete-time
+models,
+ such
+ as
+ the
+ StERGM
+ (Krivitsky
+ and
+ Handcock
+ 2014),
+ even
+ though
+ they
+deserve
+ a
+ similar
+ comparison
+ elsewhere
+ that
+ might
+ give
+ different
+ results.
+4 It
+ should
+ be
+ noted
+ that
+ the
+ TERGM
+ might
+ only
+ include
+ transformations
+ of
+ an
+earlier
+ network
+ as
+ predictors
+ of
+ the
+ network,
+ as
+ presented
+ in
+ Hanneke
+ et
+ al.
+ (2010).
+In
+ this
+ case,
+ all
+ dependence
+ between
+ ties
+ is
+ assumed
+ to
+ be
+ captured
+ by
+ the
+ previous
+
+
+--- PAGE BREAK ---
+
+182
+ 
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+A
+ different
+ formulation
+ of
+ the
+ basic
+ TERGM
+ does
+ not
+ use
+ a
+previous
+ time-point
+ as
+ a
+ predictor,
+ but
+ instead
+ models
+ a
+ “dyadic
+stability”
+ parameter
+ (Leifeld
+ and
+ Cranmer
+ 2016),
+ which
+ models
+how
+ many
+ ties
+ and
+ non-ties
+ remain
+ constant
+ between
+ two
+ observa-
+tions.
+ However,
+ as
+ we
+ show
+ in
+ Appendix
+ A.1.1
+ of
+ the
+ Supplementary
+data
+ these
+ two
+ formulations
+ are
+ mathematically
+ equivalent
+ and
+ we
+use
+ the
+ more
+ intuitive
+ version
+ using
+ the
+ previous
+ time-point
+ as
+ a
+predictor
+ throughout
+ the
+ article
+ for
+ our
+ discussion.
+ As
+ it
+ is
+ just
+ an
+ERGM
+ with
+ a
+ previous
+ time-point
+ as
+ a
+ dyadic
+ covariate,
+ the
+ TERGM
+can
+ be
+ estimated
+ with
+ any
+ software
+ that
+ can
+ estimate
+ ERGMs
+ (see
+e.g.
+ Hunter
+ et
+ al.,
+ 2008b;
+ Wang
+ et
+ al.,
+ 2014).
+2.2.
+ Stochastic
+ actor-oriented
+ models
+The
+ guiding
+ idea
+ behind
+ SAOMs
+ is
+ the
+ integration
+ of
+ statistical
+models
+ that
+ can
+ account
+ for
+ network
+ dependence
+ with
+ theoretical
+models
+ of
+ action
+ that
+ view
+ social
+ change
+ as
+ emanating
+ from
+ indi-
+vidual
+ actors.
+ Starting
+ from
+ the
+ idea
+ of
+ modelling
+ change,
+ SAOMs
+are
+ continuous-time
+ models
+ that
+ connect
+ two
+ observations
+ of
+ a
+network
+ through
+ an
+ unobserved
+ sequence
+ of
+ smallest
+ possible
+changes,
+ called
+ mini-steps.
+ In
+ these
+ mini-steps,  ﬁrst
+ an
+ actor
+ in
+ the
+network
+ is
+ chosen
+ to
+ make
+ a
+ tie
+ change
+ according
+ to
+ the
+ so-called
+rate-function.5 Second,
+ this
+ actor
+ considers
+ which
+ (if
+ any)
+ of
+ its
+outgoing
+ ties
+ it
+ will
+ change,
+ with
+ its
+ decision
+ being
+ based
+ on
+ a
+multinomial
+ logit
+ that
+ uses
+ the
+ so-called
+ objective
+ function.
+ Sim-
+ilar
+ to
+ the
+ ERGM,
+ the
+ objective
+ function
+ is
+ a
+ linear
+ predictor
+ that
+depends
+ on
+ statistics
+ si (x) as
+ “seen”
+ from
+ the
+ perspective
+ of
+ actor
+ i
+and
+ a
+ statistical
+ parameter
+ ˇ:
+
+k
+ˇksi,k (x)
+Network
+ dependencies
+ are
+ modelled
+ within
+ this
+ objective
+ func-
+tion
+ expressed
+ as
+ statistics
+ and,
+ thus,
+ unfold
+ over
+ time,
+ because
+ the
+decision
+ of
+ which
+ tie
+ to
+ update
+ can
+ depend
+ on
+ its
+ embedding
+ in
+ net-
+work
+ structures
+ (such
+ as
+ reciprocation
+ or
+ transitive
+ embedding).
+Model
+ parameters
+ can
+ be
+ interpreted
+ in
+ light
+ of
+ these
+ mini-steps,
+indicating
+ whether
+ actors
+ preferentially
+ form
+ ties
+ to
+ be
+ embedded
+in
+ certain
+ conﬁgurations.
+ Large
+ values
+ of
+ the
+ objective
+ functions
+ are
+associated
+ with
+ changes
+ that
+ are
+ more
+ likely.
+SAOMs
+ can
+ be
+ ﬁtted
+ to
+ data
+ by
+ means
+ of
+ maximum-likelihood
+(Snijders
+ et
+ al.,
+ 2010a),
+ Bayesian
+ (Koskinen
+ and
+ Snijders
+ 2007),
+or
+ method-of-moments
+ estimation
+ (Snijders
+ 2001),
+ each
+ imple-
+mented
+ in
+ the
+ RSiena
+ software
+ (Ripley
+ et
+ al.,
+ 2016).
+ Details
+ of
+ the
+differences
+ between
+ estimation
+ procedures
+ are
+ immaterial
+ for
+ the
+arguments
+ presented
+ here
+ unless
+ pointed
+ out
+ explicitly
+ though
+properties
+ of
+ predictions
+ and
+ efﬁciency
+ differ
+ between
+ estimation
+techniques.
+3.
+ Actor
+ vs.
+ tie
+ based
+ modelling
+The
+ principal
+ difference
+ between
+ any
+ model
+ from
+ the
+ ERGM
+family
+ and
+ the
+ SAOM
+ family
+ discussed
+ in
+ the
+ literature
+ is
+ that
+ the
+former
+ is
+ “tie-oriented”
+ while
+ the
+ latter
+ is
+ “actor-oriented”
+ (Block
+et
+ al.,
+ 2016).
+ In
+ a
+ very
+ general
+ sense,
+ this
+ means
+ that
+ the
+ locus
+ of
+modelling
+ differs
+ between
+ the
+ models.
+ The
+ former
+ models
+ whether
+time-point;
+ thus,
+ ties
+ in
+ the
+ network
+ under
+ analysis
+ are
+ assumed
+ to
+ be
+ independent.
+This
+ allows
+ estimation
+ as
+ a simple
+ logistic
+ regression.
+ However,
+ a
+ previous
+ article
+(Lerner
+ et
+ al.,
+ 2013) has
+ already
+ treated
+ this
+ speciﬁc
+ model
+ in
+ comparison
+ to
+ the
+process-based
+ SAOM,
+ concluding
+ that
+ this
+ simplifying
+ assumption
+ leads
+ to
+ reason-
+able
+ model
+ ﬁt
+ in
+ case
+ observations
+ are
+ temporally
+ very
+ close,
+ i.e.
+ do
+ not
+ differ
+ on
+a
+ lot
+ of
+ tie
+ variables.
+ Consequently,
+ in
+ this
+ article
+ we  focus
+ on
+ model
+ speciﬁcations
+in
+ which
+ previous
+ observations,
+ as
+ well
+ as
+ contemporaneous
+ dependence
+ terms
+ are
+used
+ to
+ model
+ the
+ network.
+5 In
+ most
+ applications
+ of
+ SAOMs
+ the
+ rate-function
+ is
+ constant,
+ meaning
+ that
+ an
+actor
+ is
+ chosen
+ at
+ random.
+a
+ tie
+ is
+ likely
+ to
+ exist
+ depending
+ on
+ how
+ it
+ is
+ embedded
+ in
+ substruc-
+tures
+ in
+ the
+ network.
+ This
+ is
+ reﬂected
+ by
+ the
+ common
+ interpretation
+of
+ ERGM
+ parameters,
+ which
+ provide
+ the
+ likelihood
+ to
+ observe
+ a
+ tie,
+conditional
+ on
+ the
+ rest
+ of
+ the
+ network.
+ The
+ latter
+ models
+ whether
+an
+ actor
+ is
+ more
+ likely
+ to
+ form
+ or
+ maintain
+ a
+ tie
+ depending
+ on
+ its
+embedding
+ in
+ substructures
+ in
+ the
+ network
+ from
+ the
+ actor’s
+ per-
+spective.
+ The
+ SAOM
+ is
+ explicitly
+ deﬁned
+ on
+ the
+ micro-level
+ to
+ allow
+for
+ modelling
+ change
+ from
+ an
+ actor’s
+ perspective.
+While
+ these
+ differences
+ might
+ seem
+ trivial
+ at
+ ﬁrst,
+ there
+ are
+ two
+important
+ implications.
+ First,
+ the
+ different
+ loci
+ of
+ modelling
+ entail
+different
+ dependence
+ assumptions.
+ In
+ ERGMs,
+ each
+ tie
+ is
+ evaluated
+on
+ its
+ own
+ for
+ how
+ it
+ is
+ embedded
+ in
+ substructures,
+ but
+ in
+ SAOMs
+these
+ substructures
+ and
+ ties
+ are
+ always
+ identiﬁed
+ and
+ chosen
+ from
+the
+ perspective
+ of
+ a
+ particular
+ actor.
+ This
+ implies
+ that
+ a
+ decision
+to,
+ say,
+ create
+ one
+ tie
+ is
+ simultaneously
+ a
+ decision
+ against
+ creating
+or
+ deleting
+ another
+ at
+ that
+ time,
+ inducing
+ generally
+ higher-level
+dependence
+ between
+ ties
+ in
+ the
+ SAOM
+ (which
+ might
+ or
+ might
+ not
+be
+ an
+ appropriate
+ assumption
+ about
+ real-world-processes).
+ Nat-
+urally,
+ whether
+ you
+ interpret
+ this
+ ‘decision’
+ in
+ behavioural
+ terms
+or
+ merely
+ as
+ formal
+ way
+ of
+ expressing
+ that
+ ties
+ are
+ evaluated
+ with
+reference
+ to
+ how
+ they
+ are
+ embedded
+ in
+ one
+ actor’s
+ local
+ neighbour-
+hood,
+ is
+ up
+ to
+ the
+ researcher.
+ Second,
+ taking
+ an
+ actor’s
+ perspective
+allows
+ model
+ speciﬁcations
+ that
+ are
+ closer
+ to
+ social
+ theory,
+ as
+ ties
+in
+ different
+ positions
+ in
+ the
+ same
+ structure
+ can
+ be
+ guided
+ by
+ differ-
+ent
+ model
+ parameters.
+ However,
+ this
+ usually
+ comes
+ at
+ the
+ cost
+ of
+model
+ parsimony.
+Block
+ et
+ al.
+ (2016)
+ discuss
+ the
+ above
+ mentioned
+ differences
+in
+ detail
+ with
+ extensive
+ illustrations
+ and
+ provide
+ guidelines
+ as
+ to
+which
+ model
+ might
+ be
+ more
+ appropriate
+ for
+ which
+ research
+ ques-
+tions
+ when
+ only
+ taking
+ tie-
+ and
+ actor-orientation
+ into
+ account.
+4.
+ Process-based
+ vs.
+ auto-regressive
+ modelling
+The
+ more
+ important
+ division
+ among
+ the
+ discussed
+ longitudinal
+network
+ models
+ for
+ the
+ comparison
+ at
+ hand
+ is
+ how
+ they
+ treat
+ time.
+As
+ argued
+ in
+ Section
+ 2, continuous-time
+ and
+ discrete-time
+ mod-
+els
+ differ
+ fundamentally:
+ the
+ former
+ models
+ a
+ process
+ whereas
+ the
+latter
+ models
+ a
+ cross-sectional
+ observation
+ using
+ a
+ previous
+ time-
+point
+ as
+ a
+ predictor.
+ The
+ conceptualisation
+ of
+ time
+ upon
+ which
+ a
+model
+ is
+ based
+ strongly
+ impacts
+ how
+ parameters
+ can
+ be
+ interpreted
+and,
+ accordingly,
+ which
+ kind
+ of
+ research
+ question
+ can
+ be
+ answered.
+The
+ difference
+ between
+ process-based
+ and
+ auto-regressive
+models
+ focussing
+ on
+ networks
+ is
+ presented
+ in
+ Section
+ 4.1. Sub-
+sequently,
+ we
+ discuss
+ any
+ potential
+ micro-level
+ interpretations
+ of
+parameters
+ in
+ connection
+ to
+ underlying
+ social
+ mechanisms
+ (Sec-
+tion
+ 4.2) and
+ the
+ dependence
+ of
+ parameter
+ sizes
+ on
+ time
+ elapsed
+between
+ two
+ observations
+ (Section
+ 4.3).
+4.1.
+ Models
+ of
+ change
+ and
+ models
+ of
+ structure
+Continuous-
+ and
+ discrete-time
+ models
+ have
+ different
+ objects
+ of
+inference
+ and
+ thus
+ answer
+ different
+ types
+ of
+ questions.
+ Continuous-
+time
+ models
+ like
+ the
+ SAOM
+ answer,
+ broadly
+ speaking,
+ questions
+about
+ change
+ such
+ as:
+ “According
+ to
+ which
+ regularities
+ does
+ the
+network
+ evolve
+ from
+ time
+ tm−1 to
+ tm?”.
+ Conversely,
+ discrete-time
+models
+ like
+ the
+ basic
+ TERGM
+ answer
+ questions
+ about
+ structure
+ such
+as:
+ “What
+ regularities
+ does
+ the
+ network
+ at
+ time
+ tm exhibit,
+ taking
+into
+ account
+ knowledge
+ about
+ tm−1?”.
+ Note
+ that
+ this
+ means
+ that
+ the
+TERGM,
+ despite
+ including
+ a
+ previous
+ realisation
+ of
+ the
+ network,
+cannot
+ make
+ inference
+ about
+ change.
+ Fig.
+ 1
+ provides
+ an
+ example
+that
+ illustrates
+ why
+ it
+ cannot.
+Consider
+ modelling
+ the
+ two
+ depicted
+ networks
+ xa (t1) and
+ xb (t1)
+using
+ a
+ TERGM
+ with
+ three
+ parameters.
+ We
+ include
+ x (t0) as
+ a
+ dyadic
+covariate,
+ a
+ density
+ parameter
+ and
+ a
+ transitive
+ triplets
+ parameter.
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+183
+Fig.
+ 1.
+ Two
+ potential
+ network
+ sequences.
+Notes:
+ Example
+ of
+ two
+ network
+ realisations
+ xa (t1) and
+ xb (t1) that
+ are
+ equally
+ likely
+under
+ the
+ TERGM
+ but
+ imply
+ different
+ change
+ processes
+ for
+ the
+ SAOM
+ given
+ x (t0).
+Either
+ network
+ contains
+ 6
+ ties,
+ 1
+ transitive
+ triplet
+ and
+ 3
+ ties
+ change.
+ Solid
+ black
+arrows
+ indicate
+ stable
+ ties,
+ dotted
+ red
+ arrows
+ indicate
+ changing
+ ties.
+Recall
+ that
+ the
+ probability
+ to
+ observe
+ either
+ network
+ xa (t1) or
+ xb (t1)
+only
+ depends
+ on
+ the
+ sufﬁcient
+ statistics
+ of
+ the
+ networks:
+p (x∗(t1) |x (t0)) =
+exp
+kkzk (x∗(t1))
+
+As
+ both,
+ xa (t1) and
+ xb (t1), have
+ identical
+ statistics
+ (6
+ ties,
+ 3
+ties
+ stable
+ from
+ x (t0) and
+ 1
+ transitive
+ triplet),
+ they
+ have
+ the
+ same
+probability
+ to
+ be
+ observed
+ for
+ any
+ combination
+ of
+ parameters
+ and,
+consequently,
+ the
+ two
+ hypothetical
+ models
+ have
+ the
+ same
+ Maxi-
+mum
+ Likelihood
+ Estimate.
+ As
+ the
+ transitive
+ triplets
+ parameter
+ in
+either
+ model
+ will
+ be
+ identical,
+ we
+ can
+ see
+ that
+ it
+ does
+ not
+ relate
+to
+ changes
+ between
+ two
+ time-points
+ at
+ all,
+ but
+ rather
+ to
+ a
+ higher
+prevalence
+ of
+ a
+ speciﬁc
+ structure
+ (the
+ transitive
+ triplet),
+ given
+ the
+other
+ model
+ parameters.
+ Therefore,
+ the
+ notion
+ that
+ the
+ TERGM
+models
+ change
+ because
+ a
+ previous
+ time-point
+ is
+ included
+ in
+ the
+model
+ is
+ wrong.
+For
+ the
+ SAOM
+ though,
+ estimating
+ the
+ evolution
+ from
+ x (t0) to
+xa (t1) will
+ give
+ different
+ results
+ than
+ estimating
+ from
+ x (t0) to
+xb (t1), as
+ the
+ most
+ likely
+ chain
+ of
+ mini-steps
+ that
+ connects
+ x (t0) to
+the
+ respective
+ network
+ at
+ the
+ second
+ time-point
+ differs
+ markedly.
+In
+ one
+ chain
+ the
+ transitive
+ triplet
+ is
+ stable
+ and
+ the
+ three
+ non-
+embedded
+ ties
+ are
+ broken
+ and
+ three
+ ties
+ are
+ established
+ in
+ a
+different
+ location,
+ while
+ in
+ the
+ other
+ chain
+ the
+ transitive
+ triplet
+must
+ be
+ broken
+ and
+ a
+ new
+ transitive
+ triplet
+ established
+ in
+ a
+ differ-
+ent
+ location.
+ Consequently,
+ the
+ parameter
+ estimates
+ for
+ transitive
+triplets
+ differ
+ considerably,
+ with
+ the
+ transitive
+ triplets
+ parameter
+being
+ larger
+ in
+ the
+ case
+ when
+ the
+ triplet
+ emerges
+ from
+ network
+change.6
+This
+ illustration
+ shows
+ the
+ fundamental
+ difference
+ between
+these
+ models.
+ In
+ the
+ SAOM
+ dependence
+ between
+ ties
+ unfolds
+ over
+time
+ –
+ the
+ embedding
+ of
+ ties
+ guides
+ the
+ changes
+ that
+ actors
+ make.
+ In
+the
+ TERGM,
+ modelling
+ of
+ time
+ is
+ decoupled
+ from
+ the
+ modelling
+ of
+dependence;
+ one
+ parameter
+ models
+ similarity
+ between
+ a
+ network
+and
+ the
+ same
+ network
+ at
+ a
+ previous
+ time-point
+ (the
+ auto-regressive
+stability
+ term),
+ with
+ other
+ parameters
+ modelling
+ the
+ prevalence
+of
+ speciﬁc
+ structures
+ in
+ this
+ network
+ without
+ taking
+ the
+ past
+ into
+account.
+ These
+ differences
+ translate
+ into
+ how
+ the
+ model
+ parame-
+ters
+ can
+ be
+ interpreted.
+6 Note
+ that
+ Maximum
+ Likelihood
+ estimation
+ is
+ necessary
+ for
+ this
+ example
+ calcu-
+lation.
+4.2.
+ Parameter
+ interpretation
+4.2.1.
+ Interpretation
+ of
+ the
+ SAOM
+The
+ natural
+ interpretation
+ of
+ parameters
+ in
+ the
+ SAOM
+ (and
+ sim-
+ilarly
+ of
+ other
+ process-based
+ models
+ like
+ the
+ LERGM)
+ is
+ on
+ the
+micro-level
+ and
+ follows
+ directly
+ from
+ the
+ formulation
+ of
+ the
+ model.
+Even
+ though
+ the
+ passing
+ of
+ time
+ is
+ explicitly
+ modelled
+ in
+ the
+ SAOM
+in
+ the
+ rate-function,
+ generally
+ it
+ is
+ the
+ changes
+ individuals
+ make
+ to
+their
+ network
+ themselves,
+ expressed
+ in
+ the
+ parameters
+ ˇk, that
+ are
+of
+ interest
+ to
+ researchers.7
+A
+ parameter’s
+ direction
+ indicates
+ whether
+ actors
+ in
+ a
+ (hypo-
+thetical)
+ mini-step
+ make
+ choices
+ that
+ increase
+ or
+ decrease
+ the
+statistic
+ associated
+ with
+ the
+ parameter.
+ Referring
+ to
+ the
+ underly-
+ing
+ multinomial
+ choice
+ function,
+ parameter
+ sizes
+ can
+ be
+ translated
+to
+ (conditional)
+ odds
+ ratios.
+ For
+ example,
+ when
+ an
+ actor
+ has
+ the
+opportunity
+ to
+ make
+ a
+ change
+ and
+ networks
+ x±ij and
+ x±ik are
+ two
+possible
+ outcomes
+ referring
+ to
+ changing
+ either
+ the
+ tie
+ to
+ j
+ or
+ to
+ k,
+then
+ the
+ relative
+ probability
+ to
+ choose
+ x±ij over
+ x±ik can
+ be
+ calcu-
+lated
+ by
+p
+x
+ ⇝
+ x±ij
+p
+x
+ ⇝
+ x±ik =
+exp
+kˇksi,k
+
+x±ij
+exp
+kˇksi,k
+
+x±ik
+In
+ case
+ x±ij and
+ x±ik are
+ identical
+ on
+ all
+ dimensions
+ but,
+ for
+ exam-
+ple,
+ choosing
+ x±ij would
+ result
+ in
+ a
+ reciprocated
+ tie
+ whereas
+ x±ik
+would
+ not,
+ all
+ terms
+ but
+ the
+ difference
+ in
+ reciprocity
+ would
+ cancel
+out
+ and
+p
+x
+ ⇝
+ x±ij
+p
+x
+ ⇝
+ x±ik =
+ exp
+ˇreciprocity
+
+Because
+ the
+ interpretation
+ of
+ SAOM
+ parameters
+ is
+ on
+ the
+ level
+ of
+the
+ mini-step,
+ it
+ is
+ important
+ that
+ the
+ modelled
+ real-world
+ process
+is
+ reasonably
+ approximated
+ by
+ a
+ series
+ of
+ mini-steps.
+ Under
+ this
+assumption,
+ the
+ interpretation
+ of
+ SAOM
+ parameters
+ allows
+ direct
+inference
+ on
+ whether
+ particular
+ social
+ mechanisms,
+ once
+ trans-
+lated
+ into
+ a
+ network
+ statistic,
+ underlie
+ the
+ evolution
+ of
+ a
+ network
+between
+ multiple
+ time-points.
+4.2.2.
+ Interpretation
+ of
+ the
+ ERGM
+To
+ interpret
+ the
+ TERGM,
+ it
+ is
+ instructive
+ to
+ review
+ how
+ param-
+eters
+ of
+ the
+ regular
+ (cross-sectional)
+ ERGM
+ can
+ be
+ interpreted.
+ For
+the
+ ERGM
+ it
+ is
+ common
+ to
+ interpret
+ the
+ model
+ in
+ terms
+ of
+ a
+ micro-
+process
+ (Lusher
+ et
+ al.,
+ 2013,
+ Ch
+ 3).
+ That
+ is,
+ one
+ can
+ interpret
+ the
+structural
+ features
+ of
+ the
+ network
+ as
+ resulting
+ from
+ biases
+ towards
+particular
+ types
+ of
+ tie-conﬁgurations
+ in
+ a
+ hypothetical
+ network
+formation
+ process.
+ For
+ example,
+ if
+ there
+ is
+ a
+ bias
+ towards
+ recip-
+rocation,
+ then
+ whenever
+ a
+ tie-variable
+ is
+ being
+ ‘re-evaluated’,
+ it
+ is
+more
+ likely
+ to
+ remain
+ or
+ be
+ created
+ if
+ it
+ is
+ or
+ would
+ be
+ recipro-
+cated.
+ The
+ underlying
+ model
+ casts
+ the
+ network
+ as
+ the
+ result
+ of
+ a
+process
+ of
+ local
+ evaluations
+ or
+ updates
+ of
+ ties,
+ where
+ a
+ randomly
+chosen
+ tie
+ variable
+ is
+ considered
+ for
+ update
+ and
+ set
+ to
+ be
+ present
+with
+ probability
+p
+x
+ ⇝
+ x+ij
+=
+exp
+kkzk
+
+x+ij
+exp
+kkzk
+
+x+ij
++
+ exp(
+kkzk
+
+x−ij
+)
+,
+where
+ x+ij(x−ij) is
+ the
+ network
+ x
+ where
+ the
+ tie
+ from
+ i to
+ j is
+ present
+(absent).
+To
+ accommodate
+ this
+ interpretation
+ we
+ must
+ assume
+ that
+ the
+process
+ is
+ homogeneous
+ and
+ has
+ continued
+ for
+ a
+ sufﬁciently
+ long
+7 Early
+ continuous-time
+ models
+ for
+ networks
+ that
+ are
+ not
+ actor-oriented
+ and
+focus
+ explicitly
+ on
+ the
+ rate
+ at
+ which
+ a
+ tie
+ changes
+ are
+ the
+ independent
+ arcs,
+ the
+reciprocity
+ models
+ (Wasserman,
+ 1980;
+ Leenders,
+ 1995)
+ and
+ the
+ pioneering
+ work
+ of
+Holland
+ and
+ Leinhardt
+ (1977).
+
+
+--- PAGE BREAK ---
+
+184
+ 
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+time
+ such
+ that
+ the
+ initial
+ state
+ is
+ irrelevant.
+ In
+ other
+ words,
+ to
+ make
+this
+ micro-level
+ interpretation
+ for
+ a
+ regular
+ ERGM,
+ one
+ is
+ forced
+ to
+assume
+ that
+ the
+ observed
+ network
+ is
+ in
+ an
+ equilibrium
+ state.
+If
+ a
+ researcher
+ is
+ not
+ willing
+ to
+ make
+ this
+ equilibrium
+ assump-
+tion,
+ the
+ regular
+ ERGM
+ can
+ still
+ be
+ interpreted
+ in
+ terms
+ of
+ over-
+ or
+under-representation
+ of
+ speciﬁc
+ substructures
+ within
+ a
+ network,
+compared
+ to
+ what
+ would
+ be
+ expected
+ by
+ chance.
+ For
+ example,
+ a
+positive
+ reciprocity
+ parameter
+ can
+ be
+ interpreted
+ as
+ a
+ network
+ hav-
+ing
+ more
+ reciprocated
+ dyads
+ compared
+ to
+ what
+ would
+ be
+ expected
+at
+ random,
+ controlling
+ for
+ all
+ other
+ included
+ statistics
+ in
+ the
+ model.
+This
+ second
+ interpretation
+ is
+ equivalent
+ to
+ viewing
+ ERGM
+ as
+ a
+ log-
+linear
+ model
+ for
+ dependent
+ binary
+ variables
+ (Frank
+ and
+ Strauss,
+1986).
+ The
+ dual
+ interpretation
+ option
+ on
+ the
+ micro-level
+ or
+ on
+ the
+network-level
+ of
+ the
+ ERGM
+ is
+ a
+ useful
+ model
+ feature
+ because
+ it
+extends
+ the
+ scenarios
+ when
+ ERGM
+ interpretation
+ is
+ plausible.
+ Is
+this
+ the
+ same
+ for
+ the
+ TERGM?
+4.2.3.
+ Interpretation
+ of
+ the
+ TERGM
+The
+ network-level
+ interpretation
+ of
+ the
+ basic
+ TERGM
+ is
+ a
+ model
+for
+ a
+ network
+ at
+ time
+ tm where,
+ in
+ addition
+ to
+ the
+ dependencies
+ that
+a
+ regular
+ ERGM
+ can
+ incorporate,
+ one
+ can
+ also
+ test
+ whether
+ ties
+ that
+were
+ present
+ at
+ tm−1 are
+ more
+ likely
+ to
+ be
+ present
+ at
+ tm.
+ In
+ this
+ way,
+the
+ interpretation
+ does
+ not
+ differ
+ from
+ a
+ model
+ where
+ we  predict
+one
+ network
+ from
+ another,
+ e.g.
+ predicting
+ treaties
+ between
+ coun-
+tries
+ from
+ their
+ geographic
+ proximity.
+ In
+ the
+ TERGM,
+ however,
+ the
+additional
+ network
+ is
+ the
+ same
+ set
+ of
+ relationships,
+ only
+ at
+ a
+ previ-
+ous
+ time
+ point.
+ Thus,
+ the
+ interpretation
+ of,
+ for
+ example,
+ a
+ positive
+transitivity
+ parameter
+ in
+ a
+ TERGM
+ would
+ be
+ that
+ there
+ is
+ more
+ tran-
+sitivity
+ than
+ randomly
+ expected,
+ controlling
+ for
+ how
+ the
+ network
+looked
+ in
+ the
+ past.
+However,
+ by
+ controlling
+ for
+ a
+ past
+ version
+ of
+ the
+ network,
+ the
+relative
+ importance
+ of
+ transitivity
+ needs
+ to
+ be
+ interpreted
+ net
+ of
+whichever
+ mechanisms
+ created
+ and
+ changed
+ the
+ network
+ to
+ its
+previous
+ state.
+ Following
+ from
+ the
+ discussion
+ in
+ Section
+ 4.1, the
+model
+ for
+ the
+ network
+ at
+ x (tm) is
+ agnostic
+ about
+ every
+ aspect
+ of
+the
+ structure
+ of
+ x (tm−1) other
+ than
+ the
+ presence
+ of
+ individual
+ tie-
+variables.
+ Thus,
+ if
+ x (tm−1) (the
+ past)
+ contains
+ many
+ of
+ the
+ same
+dependencies
+ as
+ x (tm) (the
+ present),
+ the
+ size
+ of
+ the
+ parameters
+modelling
+ these
+ dependencies
+ will
+ reﬂect
+ this.
+ For
+ example,
+ an
+interpretation
+ of
+ a
+ positive
+ transitivity
+ parameter
+ might
+ be
+ that
+there
+ is
+ a
+ tendency
+ towards
+ transitivity
+ net
+ of
+ the
+ past
+ network
+ and
+net
+ of
+ the
+ tendency
+ of
+ ties
+ to
+ be
+ transitive
+ in
+ the
+ past.
+ It
+ is
+ important
+to
+ keep
+ in
+ mind
+ that
+ the
+ TERGM’s
+ network-level
+ interpretation
+ of
+parameters
+ does
+ not
+ pertain
+ to
+ change
+ between
+ two
+ time-points,
+but
+ to
+ the
+ structure
+ of
+ the
+ second
+ time
+ point,
+ controlling
+ for
+ the
+ﬁrst.
+Further,
+ and
+ worth
+ special
+ emphasis,
+ is
+ that
+ a
+ micro-level
+ inter-
+pretation
+ of
+ the
+ TERGM
+ similar
+ to
+ the
+ outlined
+ interpretation
+ of
+the
+ regular
+ ERGM
+ is
+ generally
+ not
+ possible.
+ This
+ is
+ because
+ the
+micro-level
+ interpretation
+ of
+ the
+ ERGM
+ requires
+ us
+ to
+ make
+ the
+assumption
+ that
+ the
+ network
+ generating
+ process
+ is
+ in
+ equilibrium
+or,
+ in
+ other
+ words,
+ independent
+ of
+ its
+ initial
+ (past)
+ state.
+ A
+ con-
+tradiction
+ in
+ the
+ TERGM
+ becomes
+ clear
+ here:
+ To
+ give
+ the
+ TERGM
+a process-interpretation
+ would
+ require
+ that
+ the
+ network
+ x (tm)
+is
+ simultaneously
+ in
+ equilibrium
+ (independent
+ of
+ the
+ past)
+ and
+dependent
+ on
+ the
+ past
+ network
+ x (tm−1). This
+ logic
+ is
+ obviously
+inconsistent
+ and
+ thus
+ a
+ micro-level
+ interpretation
+ of
+ the
+ TERGM
+is
+ impossible.
+This
+ shows
+ that
+ if
+ we
+ are
+ interested
+ in
+ understanding
+ how
+ net-
+works
+ evolve
+ and
+ how
+ ties
+ come
+ about
+ on
+ a
+ micro-level,
+ the
+ TERGM
+is
+ not
+ a
+ useful
+ model,
+ as
+ parameters
+ estimated
+ from
+ it
+ only
+ allow
+interpretation
+ on
+ the
+ network
+ level
+ and
+ cannot
+ be
+ interpreted
+ as
+governing
+ a
+ process
+ over
+ time.
+4.3.
+ Dependence
+ of
+ parameters
+ on
+ time
+To
+ illustrate
+ a
+ further
+ difference
+ between
+ auto-regressive
+ and
+process-based
+ models,
+ we  can
+ draw
+ on
+ past
+ statistical
+ literature
+(summarised
+ in
+ e.g.
+ Voelkle
+ et
+ al.,
+ 2012).
+ This
+ discusses
+ that
+ not
+ only
+the
+ size
+ of
+ the
+ “stability-parameter”
+ of
+ auto-regressive
+ models,
+ but
+also
+ most
+ other
+ parameters
+ of
+ these
+ models
+ depend
+ on
+ the
+ time
+elapsed
+ between
+ two
+ observations
+ of
+ the
+ same
+ system,
+ in
+ our
+ case
+a
+ network.
+ This
+ is
+ closely
+ related
+ to
+ the
+ issue
+ of
+ interpretability
+ dis-
+cussed
+ in
+ the
+ previous
+ section:
+ that
+ the
+ parameters
+ of
+ a
+ structural
+network
+ need
+ to
+ be
+ interpreted
+ net
+ of
+ network
+ features
+ present
+at
+ a
+ previous
+ time-point.
+ In
+ the
+ remainder
+ of
+ this
+ section,
+ time-
+dependence
+ is
+ discussed
+ referring
+ ﬁrst
+ to
+ parameters
+ connected
+ to
+time
+ and,
+ subsequently,
+ to
+ all
+ other
+ parameters.
+Both
+ the
+ SAOM
+ and
+ the
+ TERGM
+ include
+ parameters
+ directly
+ con-
+nected
+ to
+ how
+ much
+ time
+ (meaning
+ how
+ many
+ tie-changes)
+ has
+passed
+ between
+ two
+ observations.
+ In
+ the
+ TERGM
+ this
+ is
+ the
+ “tie-
+stability”
+ parameter
+ or
+ a
+ transformation
+ thereof;
+ in
+ the
+ SAOM
+ this
+is
+ the
+ rate-parameter.8 A
+ larger
+ SAOM
+ rate-parameter
+ means
+ more
+time
+ has
+ passed,
+ while
+ a
+ smaller
+ TERGM
+ stability-parameter
+ means
+the
+ second
+ network
+ looks
+ less
+ like
+ the
+ ﬁrst
+ network,
+ which
+ allows
+the
+ interpretation
+ that
+ more
+ time
+ has
+ passed.
+ How
+ about
+ other
+model
+ parameters?
+For
+ the
+ SAOM,
+ more
+ time/more
+ change
+ between
+ observations
+results
+ in
+ more
+ (simulated)
+ instances
+ in
+ which
+ an
+ actor
+ makes
+ a
+tie-change
+ and
+ these
+ changes
+ are
+ what
+ is
+ modelled.
+ Thus,
+ for
+ exam-
+ple,
+ a
+ positive
+ reciprocation
+ parameter
+ means
+ that
+ newly
+ formed
+ties
+ are
+ more
+ reciprocated
+ than
+ expected
+ by
+ chance
+ and/or
+ exist-
+ing
+ reciprocated
+ ties
+ are
+ less
+ likely
+ to
+ be
+ broken.
+ This
+ means
+ for
+more
+ change
+ between
+ observations,
+ we
+ base
+ the
+ model
+ parame-
+ters
+ on
+ more
+ (hypothetical)
+ decisions.
+ Independence
+ of
+ parameter
+sizes
+ on
+ time
+ elapsed
+ is
+ a
+ consequence
+ of
+ modelling
+ actors’
+ choices
+conditionally
+ independent
+ of
+ the
+ rate
+ of
+ change
+ in
+ the
+ SAOM.
+In
+ contrast,
+ TERGM
+ parameter
+ estimates
+ are
+ not
+ independent
+ of
+the
+ amount
+ of
+ change
+ between
+ observations.
+ Assume,
+ for
+ example,
+that
+ we
+ have
+ an
+ observed
+ networkx (t0) that
+ exhibits
+ a
+ strong
+ ten-
+dency
+ towards
+ reciprocation
+ of
+ ties,
+ and
+ some
+ process
+ by
+ which
+ ties
+change
+ but
+ the
+ density
+ and
+ level
+ of
+ reciprocation
+ remain
+ constant.
+If
+ this
+ process
+ starts
+ from
+ network
+ x (t0) we
+ can,
+ after
+ some
+ time
+has
+ passed,
+ observe
+ later
+ realisations
+ of
+ the
+ network
+ x (t1),  x (t2) etc.
+If
+ between
+ x (t1) and
+ x (t0) little
+ change
+ has
+ happened,
+ in
+ an
+analysis
+ of
+ x (t1) |x (t0) we
+ will
+ not
+ only
+ observe
+ a
+ strong
+ stabil-
+ity
+ parameter,
+ but
+ also
+ a
+ rather
+ weak
+ reciprocity
+ parameter,
+ as
+including
+ x (t0) as
+ a
+ predictor,
+ which
+ is
+ strongly
+ reciprocated,
+ will
+already
+ explain
+ a
+ lot
+ of
+ the
+ reciprocity
+ in
+ the
+ network
+ under
+ anal-
+ysis
+ x (t1).  However,
+ the
+ further
+ we  move
+ away
+ from
+ x (t0) in time
+(read:
+ changes
+ in
+ the
+ network)
+ the
+ less
+ reciprocation
+ in
+ network
+x (ts) will
+ be
+ explained
+ by
+ the
+ persistence
+ of
+ reciprocity
+ induced
+ by
+the
+ network
+ x (t0) and
+ the
+ larger
+ an
+ estimated
+ reciprocity
+ param-
+eter
+ will
+ be.
+ This
+ is
+ because
+ the
+ reciprocity
+ parameter
+ will
+ model
+the
+ amount
+ of
+ reciprocation
+ not
+ captured
+ by
+ the
+ stability
+ param-
+eter.
+ As
+ the
+ amount
+ of
+ reciprocation
+ not
+ captured
+ by
+ tie-stability
+depends
+ on
+ the
+ time
+ elapsed,
+ the
+ reciprocity
+ parameter
+ itself
+ will
+also
+ depend
+ on
+ the
+ time
+ elapsed,
+ where
+ a
+ longer
+ inter-observation
+time
+ will
+ result
+ in
+ a
+ stronger
+ reciprocity
+ parameter.
+ As
+ the
+ same
+logic
+ can
+ be
+ applied
+ to
+ all
+ parameters
+ in
+ a
+ TERGM,
+ each
+ one
+ poten-
+tially
+ depends
+ on
+ the
+ time
+ elapsed
+ between
+ two
+ observations,
+ even
+if
+ the
+ underlying
+ process
+ is
+ time-homogeneous.
+ The
+ longer
+ the
+ time
+between
+ the
+ two
+ observations,
+ the
+ less
+ the
+ second
+ network
+ will
+ be
+explained
+ by
+ the
+ ﬁrst
+ one
+ and
+ the
+ more
+ structural
+ parameters
+ will
+seem
+ to
+ matter.
+8 Assuming
+ that
+ we
+ have
+ a
+ model
+ in
+ which
+ the
+ rate
+ of
+ change
+ is
+ constant
+ between
+all
+ actors.
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+185
+Table
+ 1
+Parameters
+ used
+ for
+ forwards
+ Simulation
+ of
+ the
+ SAOM
+ and
+ TERGM.
+SAOM
+ 
+TERGM
+Effect
+ 
+param.
+ 
+param.
+ 
+Effect
+Outdegree
+ 
+−2.43
+ 
+−5.38
+ 
+Edges
+Reciprocity
+ 
+1.35
+ 
+1.41
+ 
+Reciprocity
+GWESP
+ transitive
+0.91
+ 
+0.40
+ 
+GWESP
+ transitive
+GWESP
+ cyclic
+ 
+0.34
+ 
+0.04
+ 
+GWESP
+ cyclic
+Indegree
+ Popularity
+ (sqrt)
+ 
+0.02
+ 
+−0.38
+ 
+Indegree
+ GW
+Two-Paths
+ (OutPop)
+ (sqrt)
+ 
+−0.45
+ 
+−0.09
+ 
+Two-paths
+ GW
+Outdegree
+ Activity
+ (sqrt)
+ 
+−0.09
+ 
+0.10
+ 
+Outdegree
+ GW
+Same
+ Sex
+ 
+1.18
+ 
+1.23
+ 
+Same
+ Sex
+Rate
+ 
+2.63
+ 
+4.65
+ 
+Tie-Stability
+The
+ dependence
+ of
+ TERGM
+ parameters
+ on
+ time
+ also
+ points
+ to
+ a
+more
+ general
+ observation:
+ networks
+ can
+ only
+ follow
+ an
+ assumed
+TERGM
+ at
+ speciﬁc
+ points
+ in
+ time
+ that
+ are
+ determined
+ by
+ a
+ con-
+stant
+ distance
+ between
+ observations.
+ If
+ the
+ network
+ at
+ t1 follows
+ a
+TERGM
+ conditional
+ on
+ t0, then
+ a
+ network
+ at
+ some
+ later
+ point
+ e.g.
+ t2
+does
+ not
+ follow
+ any
+ TERGM
+ conditional
+ on
+ t0. This
+ is
+ because
+ the
+network
+ at
+ t1 enters
+ the
+ normalising
+ constant,
+ which
+ means
+ one
+cannot
+ easily
+ rewrite
+ p (x (t2) |x (t0)) as
+ a
+ TERGM.
+ Consequently
+ one
+cannot,
+ strictly
+ speaking,
+ estimate
+ a
+ TERGM
+ for
+ observations
+ at
+ t1+s
+and
+ t0 (this
+ is
+ shown
+ in
+ detail
+ in
+ Appendix
+ A.1.2
+ of
+ the
+ Supplemen-
+tary
+ data),
+ as
+ t1+s does
+ not
+ follow
+ a
+ TERGM
+ distribution
+ based
+ on
+t0.
+4.4.
+ Empirical
+ illustration
+The
+ dependence
+ of
+ parameter
+ size
+ on
+ time
+ for
+ the
+ two
+ mod-
+els
+ can
+ be
+ demonstrated
+ using
+ simulation-based
+ analyses.
+ One
+analysis
+ shows
+ the
+ parameter
+ consistency
+ of
+ the
+ SAOM;
+ the
+ other
+analysis
+ shows
+ that
+ parameters
+ of
+ a
+ TERGM
+ model
+ are
+ affected
+ by
+the
+ duration
+ of
+ the
+ assumed
+ process.
+ Detailed
+ description
+ of
+ the
+performed
+ experiment
+ can
+ be
+ found
+ in
+ Appendix
+ A.2.1
+ of
+ the
+ Sup-
+plementary
+ data,
+ in
+ the
+ current
+ section
+ only
+ the
+ intuition
+ of
+ the
+analyses
+ and
+ the
+ results
+ are
+ presented.
+The
+ analysis
+ proceeds
+ in
+ three
+ steps.
+ First,
+ we
+ estimate
+ mod-
+els
+ based
+ on
+ empirical
+ data
+ to
+ obtain
+ realistic
+ model
+ parameters.
+The
+ chosen
+ data
+ is
+ a
+ longitudinal
+ friendship
+ network
+ collected
+ in
+a
+ school
+ cohort
+ in
+ Glasgow
+ in
+ the
+ 1990s
+ from
+ which
+ we  use
+ two
+waves.
+ It
+ is
+ well
+ known
+ and
+ has
+ been
+ used
+ previously
+ in
+ statistical
+analyses
+ of
+ network
+ panel
+ data
+ (e.g.
+ Steglich
+ et
+ al.,
+ 2010).
+ Model
+speciﬁcations
+ are
+ based
+ on
+ recent
+ literature
+ and
+ include
+ terms
+ that
+are
+ equally
+ available
+ in
+ RSiena
+ and
+ statnet,
+ the
+ software
+ used
+ for
+this
+ comparison.
+ The
+ estimation
+ of
+ the
+ same
+ data
+ is
+ independently
+performed
+ using
+ a
+ SAOM
+ and
+ a
+ TERGM.
+ For
+ each
+ of
+ them
+ a
+ set
+ of
+parameters
+ is
+ obtained.
+ The
+ estimated
+ parameters
+ are
+ shown
+ in
+Table
+ 1
+ for
+ either
+ model.
+ While
+ the
+ model
+ speciﬁcations
+ are
+ not
+identical
+ (they
+ cannot
+ be,
+ see
+ Block
+ et
+ al.
+ (2016)
+ and
+ the
+ discussion
+in
+ Section
+ 5),
+ they
+ include
+ the
+ same
+ number
+ of
+ parameters
+ that
+express
+ the
+ same
+ types
+ of
+ interdependencies,
+ i.e.,
+ fulﬁl
+ the
+ same
+functional
+ role.
+ The
+ results
+ are
+ in
+ line
+ with
+ what
+ is
+ known
+ about
+networks
+ of
+ similar
+ type.
+ As
+ these
+ parameters
+ are
+ only
+ estimated
+to
+ obtain
+ realistic
+ parameter
+ values
+ for
+ simulation,
+ they
+ will
+ not
+ be
+discussed
+ further.
+Second,
+ those
+ estimated
+ model
+ parameters
+ are
+ used
+ to
+ simulate
+100
+ replicates
+ of
+ 10
+ waves
+ of
+ data
+ each
+ for
+ SAOMs
+ and
+ TERGMs
+starting
+ from
+ the
+ respective
+ previous
+ time-point.
+ In
+ both
+ cases
+ it
+ is
+made
+ sure
+ that
+ the
+ generated
+ sequences
+ are
+ similar
+ in
+ their
+ amount
+of
+ change
+ to
+ assure
+ comparability.
+ Note
+ that
+ two
+ series
+ of
+ networks
+are
+ simulated:
+ one
+ using
+ the
+ SAOM
+ to
+ generate
+ a
+ series
+ of
+ data
+ and
+one
+ using
+ the
+ TERGM
+ to
+ generate
+ a
+ series
+ of
+ data.
+Third,
+ we  take
+ a
+ pair
+ of
+ two
+ simulated
+ networks
+ that
+ are
+between
+ one
+ and
+ ten
+ simulated
+ periods
+ apart
+ and
+ re-estimate
+ mod-
+els
+ with
+ these
+ data.
+ Each
+ model
+ only
+ re-estimates
+ the
+ data
+ that
+ was
+produced
+ with
+ the
+ same
+ simulation
+ method.
+ Thus,
+ the
+ SAOM
+ esti-
+mates
+ data
+ produced
+ with
+ a
+ SAOM,
+ and
+ the
+ TERGM
+ estimates
+ data
+produced
+ with
+ a
+ TERGM.
+ This
+ is
+ because
+ we
+ are
+ interested
+ in
+ con-
+sistency
+ of
+ the
+ models
+ with
+ regards
+ to
+ stability
+ of
+ parameters
+ and
+want
+ to
+ exclude
+ all
+ other
+ possible
+ factors
+ that
+ can
+ lead
+ to
+ diverging
+results.
+Our
+ theoretical
+ discussions
+ suggest
+ that
+ re-estimated
+ parame-
+ters
+ should
+ be
+ consistent
+ with
+ the
+ simulation
+ parameters
+ in
+ case
+ of
+the
+ SAOM,
+ regardless
+ of
+ how
+ far
+ the
+ observed
+ networks
+ are
+ apart
+temporally,
+ but
+ that
+ the
+ distance
+ between
+ networks
+ does
+ affect
+ the
+size
+ of
+ TERGM
+ parameters.
+The
+ results
+ of
+ the
+ re-estimation
+ are
+ shown
+ in
+ Fig.
+ 2. For
+ each
+parameter,
+ the
+ red
+ triangle
+ is
+ the
+ original
+ parameter
+ used
+ to
+ sim-
+ulate
+ data,
+ while
+ the
+ coloured
+ points
+ are
+ the
+ median
+ re-estimated
+parameters
+ after
+ 1,
+ 2,
+ . . .,  10
+ periods,
+ respectively.
+ Bars
+ surround-
+ing
+ the
+ points
+ indicate
+ the
+ 90%
+ of
+ the
+ range
+ of
+ parameter
+ estimates
+in
+ the
+ repetitions.
+ The
+ estimated
+ parameters
+ of
+ the
+ SAOM
+ show
+some
+ stochastic
+ variation
+ over
+ the
+ different
+ period
+ lengths,
+ but
+ no
+systematic
+ bias
+ in
+ one
+ or
+ the
+ other
+ direction.
+ In
+ contrast,
+ however,
+most
+ mean
+ parameter
+ estimates
+ for
+ the
+ TERGM
+ show
+ a
+ system-
+atic
+ and
+ substantial
+ bias
+ in
+ parameter
+ estimates
+ dependent
+ on
+ the
+number
+ of
+ simulated
+ periods
+ that
+ lie
+ between
+ the
+ two
+ networks
+under
+ analysis.
+Further,
+ after
+ some
+ periods
+ the
+ range
+ of
+ estimated
+ parameters
+does
+ not
+ include
+ the
+ original
+ data
+ generating
+ parameter
+ anymore
+for
+ four
+ out
+ of
+ seven
+ parameters,
+ i.e.
+ the
+ data
+ generating
+ parameter
+is
+ outside
+ of
+ the
+ 90%
+ interval
+ of
+ recovered
+ parameters.
+ However,
+not
+ all
+ parameters
+ change
+ with
+ period
+ length.
+ This
+ means
+ that
+ in
+an
+ empirical
+ analysis,
+ depending
+ on
+ the
+ time
+ lag
+ chosen,
+ results
+ will
+lead
+ to
+ quite
+ different
+ conclusions,
+ in
+ particular
+ when
+ comparing
+the
+ relative
+ strength
+ of
+ different
+ parameters.
+This
+ analysis
+ shows
+ that
+ if
+ we
+ assume
+ that
+ some
+ observed
+ data
+are
+ a
+ result
+ of
+ a
+ process
+ that
+ works
+ in
+ continuous
+ time,
+ an
+ analysis
+ of
+these
+ data
+ with
+ a
+ continuous-time
+ model
+ (SAOM)
+ does
+ not
+ need
+ to
+consider
+ how
+ far
+ apart
+ the
+ network
+ observations
+ are,
+ as
+ parameter
+estimates
+ are
+ independent
+ of
+ elapsed
+ time.
+ Should
+ we,
+ however,
+assume
+ the
+ TERGM
+ as
+ a
+ “data-generating
+ process”,
+ recording
+ the
+network
+ at
+ the
+ “correct”
+ time-points
+ is
+ of
+ crucial
+ importance,
+ as
+ the
+estimated
+ parameters
+ are
+ strongly
+ biased
+ otherwise.
+ Arguably
+ it
+ is
+a
+ herculean
+ task
+ to
+ conclusively
+ show
+ that
+ countries,
+ for
+ example,
+form
+ treaties
+ based
+ on
+ which
+ treaties
+ existed
+ 1
+ year
+ ago,
+ but
+ not
+2
+ years
+ ago
+ (or
+ 5
+ years,
+ or
+ 6
+ months.
+ . .).  However,
+ without
+ strong
+assumptions
+ about
+ this,
+ parameter
+ interpretation
+ is
+ ambiguous,
+ as
+analysis
+ of
+ different
+ time-points
+ will
+ lead
+ to
+ different
+ results.
+5.
+ Model
+ performance
+ for
+ tie
+ prediction
+After
+ outlining
+ issues
+ of
+ time-dependence
+ of
+ parameters
+ that
+affect
+ interpretation
+ in
+ the
+ previous
+ section,
+ we
+ now
+ turn
+ to
+ dis-
+cussing
+ predictive
+ power
+ of
+ the
+ two
+ models
+ under
+ analysis.
+ We  ﬁrst
+discuss
+ prediction
+ of
+ out-of-sample
+ dependence
+ structures
+ more
+generally
+ with
+ the
+ conclusion
+ that
+ a
+ model
+ speciﬁcation
+ should
+ be
+available
+ that
+ gives
+ a
+ reasonable
+ out-of-sample
+ ﬁt
+ for
+ either
+ model.
+Then
+ we
+ test
+ recent
+ claims
+ that
+ TERGM
+ provides
+ greater
+ predictive
+power
+ on
+ the
+ tie-level
+ and
+ thus
+ should
+ be
+ preferred
+ for
+ empirical
+analysis
+ (Leifeld
+ and
+ Cranmer
+ 2016).
+ Our
+ conclusion
+ is
+ that
+ both
+models
+ are
+ weak
+ predictively
+ and
+ that
+ models
+ for
+ tie
+ dependence
+are,
+ for
+ principled
+ theoretical
+ and
+ statistical
+ reasons,
+ not
+ suitable
+for
+ tie-level
+ predictions.
+Cross-validation
+ is
+ a
+ powerful
+ technique
+ for
+ assessing
+ the
+ ﬁt
+ of
+a
+ particular
+ model
+ to
+ data.
+ It
+ is
+ already
+ common
+ practice
+ to
+ eval-
+uate
+ model
+ ﬁt
+ for
+ ERGM
+ (Hunter
+ et
+ al.,
+ 2008a;
+ Robins
+ et
+ al.,
+ 2005)
+
+
+--- PAGE BREAK ---
+
+186
+ 
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+Fig.
+ 2.
+ Estimated
+ Parameters
+ and
+ 90%
+ range
+ of
+ re-estimation
+ of
+ the
+ Glasgow
+ data.
+and
+ SAOM
+ (Schweinberger
+ 2012;
+ Lospinoso
+ 2012) through
+ simu-
+lating
+ replicate
+ data
+ from
+ the
+ ﬁtted
+ model
+ and
+ comparing
+ those
+data
+ to
+ the
+ observations.
+ For
+ longitudinal
+ models
+ this
+ can
+ also
+ be
+done
+ in
+ the
+ form
+ of
+ predictive
+ distributions
+ for
+ out-of
+ sample
+ data
+(Koskinen
+ and
+ Snijders
+ 2007).
+ For
+ dependent
+ data,
+ especially
+ net-
+work
+ data,
+ this
+ begs
+ the
+ question
+ whether
+ a
+ model
+ should
+ perform
+well
+ in
+ terms
+ of
+ predicting
+ dependence
+ between
+ ties
+ at
+ a
+ future
+time
+ point,
+ or
+ the
+ presence
+ of
+ individual
+ ties.
+ If
+ tie
+ prediction
+ is
+ per-
+fect,
+ i.e.,
+ 100%
+ accurate,
+ it
+ logically
+ implies
+ perfect
+ prediction
+ of
+ all
+network
+ dependencies.
+ However,
+ this
+ implication
+ breaks
+ down
+ in
+the
+ absence
+ of
+ perfect
+ tie
+ prediction.
+ What’s
+ more,
+ reasonable
+ pre-
+diction
+ in
+ terms
+ of
+ tie
+ dependence
+ need
+ not
+ derive
+ from
+ a
+ model’s
+high
+ accuracy
+ at
+ predicting
+ individual
+ ties.
+Overall,
+ there
+ seems
+ to
+ be
+ a
+ consensus
+ in
+ the
+ ﬁeld
+ for
+ the
+idea
+ that
+ the
+ inferential
+ task
+ of
+ network
+ analysis
+ is
+ to
+ uncover
+dependencies
+ between
+ network
+ ties;
+ in
+ this
+ view,
+ out-of-sample
+prediction
+ should
+ be
+ able
+ to
+ predict
+ dependence
+ in
+ un-modelled
+observations
+ rather
+ than
+ particular
+ observations.
+ The
+ issue
+ is
+ well
+known
+ more
+ generally
+ in
+ statistics
+ and
+ the
+ parallel
+ to
+ the
+ so
+ called
+Hamill
+ (2001)
+ forecast
+ –
+ where
+ a
+ forecast
+ is
+ “wrong”
+ but
+ “correct
+on
+ average”
+ –
+ is
+ particularly
+ relevant.
+ If
+ you
+ calibrate
+ your
+ model
+‘marginally’
+ each
+ prediction
+ of
+ a
+ collection
+ of
+ events
+ is
+ unrealis-
+tic
+ but
+ you
+ get
+ the
+ occurrence
+ of
+ each
+ event
+ correct
+ on
+ average;
+if
+ you
+ calibrate
+ your
+ model
+ dynamically,
+ each
+ predicted
+ outcome
+is
+ realistic
+ and
+ whether
+ you
+ get
+ the
+ occurrence
+ of
+ each
+ event
+ cor-
+rectly
+ is
+ not
+ of
+ interest
+ (Gneiting
+ et
+ al.,
+ 2007).
+ However,
+ there
+ are
+also
+ some
+ researchers
+ that
+ advocate
+ for
+ tie-prediction
+ as
+ a
+ model-
+performance
+ criterion.
+When
+ comparing
+ model
+ performance
+ based
+ on
+ a
+ priori
+ model
+speciﬁcation
+ choices,
+ we
+ must
+ be
+ aware
+ that
+ this
+ choice
+ will
+ likely
+inﬂuence
+ the
+ conclusions
+ on
+ which
+ model
+ performs
+ better.
+ Fur-
+ther,
+ since
+ they
+ are
+ quite
+ different
+ models,
+ it
+ is
+ difﬁcult
+ to
+ translate
+model
+ speciﬁcations
+ between
+ the
+ SAOM
+ and
+ (T)ERGM
+ for
+ compar-
+ing
+ predictive
+ power.
+ Because
+ one
+ is
+ actor-oriented
+ and
+ the
+ other
+is
+ tie-oriented,
+ the
+ SAOM
+ parameter
+ ‘transitive
+ ties’
+ does
+ not
+ nec-
+essarily
+ model
+ the
+ same
+ as
+ a
+ ‘transitivity’
+ parameter
+ in
+ an
+ (T)ERGM
+because
+ the
+ dependence
+ implied
+ differs
+ (see
+ Block
+ et
+ al.,
+ 2016).
+Therefore,
+ model
+ speciﬁcations
+ would
+ have
+ to
+ be
+ selected
+ inde-
+pendently,
+ making
+ impartial
+ model
+ comparison
+ difﬁcult
+ due
+ to
+ the
+practically
+ inﬁnite
+ ways
+ each
+ model
+ can
+ be
+ speciﬁed.
+ Thus,
+ we
+ focus
+here
+ more
+ on
+ the
+ principle
+ considerations
+ of
+ model
+ performance,
+with
+ special
+ regards
+ to
+ some
+ misconceptions
+ in
+ the
+ literature.
+Although
+ assessing
+ predictive
+ power
+ is
+ an
+ inherently
+ practical
+task,
+ we  can
+ derive
+ two
+ expectations
+ on
+ a
+ purely
+ theoretical
+ basis
+(demonstrated
+ empirically
+ later).
+ First,
+ we
+ can
+ expect
+ both
+ models
+to
+ perform
+ poorly
+ in
+ tie-level
+ prediction.
+ Second,
+ for
+ the
+ TERGM
+the
+ inclusion
+ of
+ network
+ terms
+ in
+ the
+ model
+ does
+ not
+ improve
+ the
+expected
+ performance
+ of
+ the
+ predictive
+ model,
+ unless
+ we
+ take
+ some
+information
+ about
+ the
+ future
+ into
+ account.
+5.1.
+ Theoretical
+ expectations
+Both
+ models
+ typically
+ analyse
+ relatively
+ sparse
+ networks
+ of
+medium
+ size
+ between
+ a
+ few
+ dozen
+ and
+ a
+ few
+ hundred
+ actors.
+ For
+illustration
+ purposes,
+ let
+ us
+ assume
+ a
+ network
+ of
+ 100
+ nodes
+ with
+500
+ ties,
+ which
+ results
+ in
+ an
+ average
+ degree
+ of
+ 5.
+ If
+ we
+ assume
+ con-
+stant
+ density
+ and
+ a
+ turnover
+ of
+ half
+ the
+ ties
+ (equalling
+ a
+ Jaccard
+network
+ stability
+ index
+ of
+ 0.33,
+ see
+ Ripley
+ et
+ al.,
+ 2016),
+ the
+ pre-
+dictive
+ task
+ of
+ a
+ model
+ would
+ be
+ to
+ ﬁnd
+ the
+ 250
+ ties
+ that
+ will
+ be
+deleted
+ and
+ another
+ 250
+ ties
+ that
+ will
+ be
+ created.
+ The
+ probability
+of
+ an
+ empty
+ model
+ to
+ correctly
+ predict
+ a
+ dropped
+ tie
+ will
+ be
+ 50%
+(250
+ out
+ of
+ 500),
+ but
+ the
+ probability
+ to
+ correctly
+ predict
+ a
+ tie
+ that
+newly
+ comes
+ into
+ existence
+ is
+ only
+ about
+ 2.5%
+ (250
+ out
+ of
+ 9400).
+As
+ we  know,
+ statistical
+ models
+ in
+ the
+ social
+ sciences
+ have
+ notori-
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+187
+Fig.
+ 3.
+ Potential
+ series
+ of
+ networks
+ at
+ 3
+ time-points.
+Notes:
+ The
+ ﬁgure
+ depicts
+ the
+ hypothetical
+ scenario
+ in
+ which
+ a
+ network
+ model
+ is
+ estimated
+ for
+ the
+ evolution
+ from
+ t0 to
+ t1 and
+ these
+ parameters
+ are
+ used
+ to
+ predict
+ the
+ network
+at
+ a
+ future
+ time-point
+ t2.
+ Each
+ of
+ the
+ three
+ potential
+ networks
+ x∗(t2) are
+ equally
+ likely
+ under
+ a
+ TERGM
+ as
+ well
+ as
+ under
+ a
+ logit
+ model,
+ but
+ the
+ tie-level
+ prediction
+ error
+ D
+differs
+ by
+ network
+ realisation.
+ Brown
+ dashed
+ arrows
+ depict
+ ties
+ that
+ are
+ more
+ likely
+ under
+ the
+ logit
+ model,
+ green
+ dotted
+ arrows
+ depict
+ ties
+ that
+ are
+ more
+ likely
+ under
+ the
+TERGM.
+ously
+ low
+ predictive
+ power,
+ even
+ within
+ sample,
+ as
+ exempliﬁed
+ by
+typically
+ low
+ R2 values.
+ Thus,
+ even
+ if
+ we
+ have
+ an
+ unusually
+ good
+model,
+ we
+ will
+ have
+ difﬁculties
+ to
+ achieve
+ predictions
+ of
+ tie
+ cre-
+ations
+ that
+ allow
+ any
+ degree
+ of
+ certainty.
+ Based
+ on
+ probably
+ any
+model,
+ the
+ answer
+ to
+ the
+ question
+ “will
+ tie
+ XYZ
+ be
+ formed
+ in
+ the
+future,
+ given
+ that
+ it
+ is
+ absent
+ now?”
+ will
+ always
+ be
+ “probably
+ not
+(i.e.
+ with
+ a
+ model-based
+ probability
+ of
+ less
+ than
+ 50%)”.
+ Thus,
+ net-
+work
+ based
+ predictions
+ about
+ which
+ countries
+ will
+ be
+ the
+ next
+ to
+form
+ a
+ trade
+ agreement,
+ for
+ example,
+ will
+ usually
+ be
+ bad.
+ We  show
+this
+ in
+ the
+ empirical
+ part
+ by
+ demonstrating
+ that
+ the
+ trivial
+ predic-
+tion
+ “the
+ network
+ in
+ the
+ future
+ will
+ look
+ exactly
+ like
+ the
+ network
+today”
+ greatly
+ and
+ consistently
+ outperforms
+ either
+ model
+ in
+ terms
+of
+ both,
+ precision
+ (indicating
+ false
+ positives)
+ and
+ recall
+ (indicating
+false
+ negatives).
+The
+ second
+ point
+ mentioned
+ above
+ is
+ more
+ difﬁcult
+ to
+ explain
+intuitively.
+ It
+ states
+ that
+ a
+ basic
+ TERGM,
+ i.e.
+ modelling
+ tie
+ depen-
+dence
+ in
+ addition
+ to
+ tie
+ stability,
+ does
+ not
+ in
+ principle
+ perform
+better
+ than
+ a
+ logistic
+ regression
+ model
+ that
+ omits
+ all
+ structural
+ net-
+work
+ effects
+ in
+ terms
+ of
+ tie-level
+ prediction.
+ This
+ is
+ because
+ the
+model
+ is
+ agnostic
+ to
+ where
+ the
+ modelled
+ dependence
+ structures
+are;
+ the
+ model
+ parameter
+ only
+ ensures
+ that
+ a
+ certain
+ number
+ of
+ e.g.
+reciprocated
+ dyads
+ exist,
+ not
+ that
+ they
+ exist
+ in
+ the
+ right
+ place.
+ Thus,
+we
+ generally
+ do
+ not
+ improve
+ link
+ prediction
+ unless
+ the
+ inclusion
+ of
+additional
+ statistics
+ puts
+ further
+ constraints
+ on
+ where
+ these
+ struc-
+tures
+ are.
+ This
+ can
+ be
+ illustrated
+ on
+ a
+ simple
+ example
+ illustrated
+ in
+Fig.
+ 3.
+Assumes
+ that
+ we
+ estimate
+ a
+ TERGM
+ including
+ a
+ density,
+ a
+ reci-
+procity
+ and
+ a
+ tie
+ stability
+ term
+ of
+ x (t1) based
+ on
+ x (t0) (the
+ training
+data)
+ and
+ use
+ the
+ estimated
+ parameters
+ to
+ predict
+ any
+ of
+ the
+ net-
+works
+ x∗(t2) with
+ x (t1) as a
+ dyadic
+ covariate
+ (the
+ hypothetical
+test
+ data).
+ It
+ is
+ clear
+ that
+ the
+ process
+ depicted
+ in
+ Fig.
+ 3
+ is
+ time-
+homogeneous
+ and
+ that
+ all
+ networks
+ have
+ exactly
+ the
+ same
+ statistics
+(5
+ ties,
+ 1
+ reciprocated
+ tie,
+ 2
+ ties
+ that
+ existed
+ in
+ the
+ previous
+ wave).
+As
+ a
+ measure
+ of
+ tie-level
+ prediction
+ error
+ we  use
+ the
+ sum
+ of
+ squared
+residuals
+D
+p,
+ x
+t2, ·
+
+=
+
+i,j
+
+p
+ij −
+ xij,t
+2
+,
+where
+ p
+ is
+ a
+ probability
+ model
+ (in
+ our
+ case
+ the
+ TERGM)
+ and
+ p
+ij is
+the
+ probability
+ to
+ observe
+ the
+ tie
+ xij under
+ this
+ model.
+Now
+ an
+ important
+ observation
+ is
+ that
+ xa (t2),  xb (t2) and
+ xc (t2)
+are
+ all
+ equally
+ likely
+ under
+ the
+ TERGM.
+ In
+ other
+ words,
+ we
+ have
+ no
+reason
+ to
+ believe
+ that
+ either
+ network
+ will
+ be
+ formed
+ more
+ likely
+than
+ another,
+ given
+ our
+ model.
+ However,
+ the
+ tie-level
+ prediction
+error
+ between
+ the
+ three
+ networks
+ varies
+ greatly.
+ Compared
+ to
+ a
+logit
+ model
+ that
+ only
+ includes
+ a
+ density
+ parameter
+ and
+ the
+ previous
+time-point
+ (i.e.
+ the
+ TERGM
+ from
+ above
+ without
+ structural
+ effects),
+sometimes
+ the
+ predictive
+ performance
+ of
+ the
+ TERGM
+ is
+ better
+ (e.g.
+xc (t2)), sometimes
+ the
+ logit
+ performs
+ better
+ (e.g.
+ xa (t2)) and
+ some-
+times
+ performance
+ is
+ similar
+ (e.g.
+ xb (t2)). This
+ is
+ because
+ some
+ ties
+(e.g.
+ from
+ the
+ upper
+ right
+ to
+ the
+ lower
+ right
+ node)
+ are
+ more
+ likely
+ to
+exist
+ under
+ the
+ model,
+ even
+ though
+ they
+ were
+ not
+ there
+ at
+ the
+ pre-
+vious
+ time
+ point
+ (xc (t2)). Thus,
+ if
+ a
+ tie
+ at
+ a
+ later
+ time-point
+ happens
+to
+ be
+ in
+ this
+ place,
+ the
+ TERGM
+ prediction
+ will
+ be
+ better
+ than
+ a
+ logit
+model.
+ However,
+ under
+ the
+ TERGM,
+ the
+ network
+ xa (t2) is
+ just
+ as
+likely
+ as
+ xc (t2),  but
+ here
+ the
+ newly
+ emerged
+ ties
+ are
+ in
+ a
+ location
+ in
+which
+ there
+ is
+ less
+ predicted
+ weight
+ on
+ this
+ speciﬁc
+ location
+ (from
+the
+ upper
+ middle
+ to
+ the
+ upper
+ right
+ node)
+ –
+ making
+ the
+ prediction
+of
+ the
+ TERGM
+ worse
+ than
+ the
+ prediction
+ of
+ the
+ logit
+ model.
+ While
+sometimes
+ one
+ and
+ sometimes
+ the
+ other
+ model
+ performs
+ better,
+ it
+is
+ usually
+ not
+ possible
+ to
+ know
+ beforehand
+ whether
+ in
+ a
+ particular
+case
+ the
+ TERGM
+ will
+ improve
+ tie-level
+ prediction.
+ This
+ is
+ because
+the
+ realisations
+ of
+ either
+ network
+ is
+ equally
+ likely
+ under
+ the
+ model
+
+
+--- PAGE BREAK ---
+
+188
+ 
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+Table 2
+Estimated
+ Parameters
+ used
+ for
+ out-of-sample
+ prediction
+ for
+ the
+ ﬁsh
+ data.
+SAOM
+ 
+TERGM
+est
+ 
+s.e.
+ 
+est.
+ 
+s.e.
+Rate
+ 
+1.12
+ 
+***
+ 
+(0.28)
+ 
+8.23
+ 
+***
+ 
+(1.10)
+ 
+Stability
+Density
+ 
+−1.97
+ 
+**
+ 
+(0.66)
+ 
+−15.76
+ 
+***
+ 
+(3.30)
+ 
+Density
+GWESP
+ 
+1.13
+ 
+**
+ 
+(0.38)
+ 
+0.73
+ 
+***
+ 
+(0.20)
+ 
+Alternating
+ Triads
+4-Cycles
+ 
+−0.11
+ 
+(0.11)
+ 
+0.01
+ 
+(0.07)
+ 
+4-Cycles
+Indegree
+ Popularity
+ (sqrt)
+ 
+0.87
+ 
+*
+ 
+(0.31)
+ 
+−0.27
+ 
+(0.27)
+ 
+Alternating
+ In-stars
+Contiguity
+ 
+2.05
+ 
+***
+ 
+(0.38)
+ 
+2.35
+ 
+***
+ 
+(0.35)
+ 
+Contiguity
+Same
+ IGOS
+ 
+0.03
+ 
+(0.02)
+ 
+0.03
+ 
+(0.02)
+ 
+Same
+ IGOS
+Trade
+ (log)
+ 
+−0.16
+ 
+(0.10)
+ 
+−0.20
+ 
+* 
+(0.08)
+ 
+Trade
+ (log)
+GDP
+ 
+2.47
+ 
+*
+ 
+(1.19)
+ 
+2.44
+ 
+**
+ 
+(0.77)
+ 
+GDP
+GDP
+ Simimlarity
+−0.90
+(1.04)
+ 
+1.59
+ 
+(0.95)
+ 
+GDP
+ Difference
+GDP
+ PC
+ 
+−0.25
+ 
+(0.20)
+ 
+−0.04
+ 
+(0.12)
+ 
+GDP
+ PC
+GDP
+ PC
+ Similarity
+ 
+−0.63
+ 
+(0.71)
+ 
+0.14
+ 
+(0.18)
+ 
+GDP
+ PC
+ Difference
+that
+ the
+ researcher
+ chose
+ –
+ the
+ TERGM.9 This
+ is
+ closely
+ linked
+ to
+the
+ observations
+ in
+ Section
+ 4.1;
+ the
+ TERGM
+ is
+ only
+ concerned
+ with
+sufﬁcient
+ statistics,
+ not
+ with
+ the
+ location
+ of
+ where
+ these
+ ties
+ are.
+Readers
+ familiar
+ with
+ multi-level
+ modelling
+ will
+ see
+ parallels
+in
+ the
+ outlined
+ reasoning
+ (see
+ e.g.
+ Snijders
+ and
+ Bosker
+ 2012).
+In
+ multilevel
+ models,
+ the
+ inclusion
+ of
+ group
+ level
+ random
+ terms
+cannot
+ improve
+ prediction
+ of
+ individual
+ outcomes
+ unless
+ other
+explanatory
+ variables
+ with
+ group-level
+ variance
+ are
+ included
+ in
+ the
+model.
+ This
+ discussion
+ illustrates
+ that
+ models
+ designed
+ to
+ deal
+ with
+interdependence
+ between
+ observations
+ are
+ not
+ geared
+ towards
+predicting
+ (future)
+ outcomes
+ of
+ individual
+ variable
+ values,
+ as
+ this
+prediction,
+ to
+ make
+ use
+ of
+ the
+ dependence
+ terms,
+ requires
+ knowl-
+edge
+ of
+ the
+ (future)
+ outcomes
+ of
+ other
+ variable
+ values.
+ Since
+ we
+cannot
+ see
+ partially
+ into
+ the
+ future
+ to
+ gain
+ some
+ observations
+ to
+anchor
+ our
+ inference
+ about
+ what
+ value
+ other,
+ dependent
+ observa-
+tions
+ may
+ take,
+ we
+ are
+ restricted
+ to
+ inference
+ about
+ the
+ pattern
+those
+ dependencies
+ have
+ and
+ are
+ likely
+ to
+ take.
+5.2.
+ Empirical
+ illustration
+In
+ this
+ second
+ empirical
+ illustration
+ of
+ the
+ article,
+ we
+ demon-
+strate
+ 
+that
+ 
+(these)
+ 
+network
+ 
+models
+ 
+that
+ 
+aim
+ 
+at
+ 
+modelling
+dependence
+ structures
+ in
+ social
+ networks
+ are
+ not
+ well
+ suited
+ for
+predicting
+ future
+ outcomes.
+ As
+ above,
+ we
+ only
+ present
+ the
+ intu-
+ition
+ of
+ the
+ analyses
+ and
+ the
+ results
+ here;
+ for
+ detailed
+ description
+of
+ the
+ experiment,
+ refer
+ to
+ Appendix
+ A2.2
+ of
+ the
+ Supplementary
+data.
+The
+ empirical
+ illustration
+ is
+ straightforward.
+ We  take
+ three
+waves
+ of
+ empirical
+ data
+ from
+ two
+ different
+ subject
+ ﬁelds.
+ First,
+we
+ take
+ one
+ cohort
+ from
+ the
+ ASSIST
+ data
+ (Steglich
+ et
+ al.,
+ 2012),
+a
+ friendship
+ networks
+ among
+ 80
+ adolescents,
+ recorded
+ at
+ 3
+ time-
+points
+ one
+ year
+ apart,
+ which
+ is
+ representative
+ of
+ data
+ typically
+analysed
+ in
+ the
+ context
+ of
+ friendship
+ studies.
+ The
+ network
+ den-
+sity
+ is
+ approximately
+ constant
+ over
+ the
+ three
+ waves.
+ The
+ second
+dataset
+ is
+ composed
+ of
+ countries’
+ bilateral
+ ﬁsheries
+ treaties
+ as
+ used
+in
+ Hollway
+ and
+ Koskinen
+ (2016).
+ Ties
+ exist
+ where
+ a
+ treaty
+ concern-
+ing
+ the
+ allocation
+ of
+ shared
+ ﬁsh
+ stocks
+ or
+ access
+ to
+ ﬁsh
+ stocks
+ within
+the
+ jurisdiction
+ of
+ only
+ one
+ of
+ the
+ parties
+ has
+ been
+ concluded.
+ While
+time-stamped
+ data
+ is
+ available,
+ we
+ artiﬁcially
+ create
+ 3
+ waves
+ of
+data
+ in
+ such
+ a
+ way
+ that
+ there
+ is
+ similar
+ amount
+ of
+ change
+ between
+waves
+ 1
+ and
+ 2
+ compared
+ to
+ between
+ waves
+ 2
+ and
+ 3.
+ The
+ network
+9 It
+ should
+ be
+ noted
+ that
+ this
+ limitation
+ does
+ not
+ hold
+ true
+ for
+ process-based
+ mod-
+els
+ (such
+ as
+ the
+ SAOM),
+ as
+ these
+ consider
+ the
+ embedding
+ of
+ ties
+ in
+ the
+ updating
+process.
+ This
+ is
+ because
+ the
+ probability
+ to
+ observe
+ a
+ certain
+ network
+ is
+ not
+ a
+ func-
+tion
+ of
+ network
+ conﬁgurations,
+ but
+ of
+ how
+ likely
+ the
+ process
+ that
+ connects
+ two
+time-points
+ is.
+ Thus,
+ for
+ example,
+ reciprocated
+ ties
+ are
+ more
+ likely
+ to
+ remain
+ than
+non-reciprocated
+ ties.
+evolution
+ mainly
+ consists
+ of
+ new
+ treaties
+ being
+ formed
+ and
+ only
+few
+ broken,
+ i.e.
+ the
+ density
+ increases
+ over
+ time.
+ This
+ is
+ typical
+ of
+many
+ political
+ science/international
+ relations
+ datasets.
+Using
+ these
+ datasets,
+ we
+ ﬁt
+ a
+ SAOM
+ and
+ a
+ TERGM
+ to
+ the
+ ﬁrst
+two
+ waves
+ of
+ the
+ data,
+ with
+ model
+ speciﬁcations
+ mirroring
+ spec-
+iﬁcations
+ in
+ current
+ literature.
+ Results
+ of
+ these
+ estimations
+ can
+ be
+found
+ in
+ Tables
+ 2
+ and
+ 3. Based
+ on
+ the
+ estimated
+ models
+ we
+ simulate
+1000
+ networks
+ starting
+ from
+ wave
+ 2
+ and
+ evaluate
+ the
+ predictive
+power
+ with
+ regards
+ to
+ wave
+ 3
+ based
+ on
+ the
+ two
+ criteria
+ precision
+and
+ recall.
+ Precision
+ measures
+ the
+ number
+ of
+ correctly
+ predicted
+ties
+ (simulated
+ ties
+ that
+ are
+ present
+ in
+ the
+ empirical
+ wave
+ 3)
+ over
+the
+ total
+ number
+ of
+ ties
+ predicted
+ by
+ the
+ simulation.
+ Recall
+ mea-
+sures
+ the
+ number
+ of
+ correctly
+ predicted
+ ties
+ over
+ the
+ total
+ number
+of
+ ties
+ observed
+ in
+ wave
+ 3.
+ Perfect
+ prediction
+ would
+ result
+ in
+ both
+indices
+ being
+ 1;
+ a
+ low
+ value
+ indicates
+ poor
+ prediction.
+ We
+ compare
+the
+ distribution
+ of
+ precision
+ and
+ recall
+ in
+ 1000
+ simulated
+ networks
+for
+ the
+ SAOM
+ and
+ the
+ TERGM
+ to
+ the
+ prediction
+ and
+ recall
+ of
+ a
+ triv-
+ial
+ model
+ that
+ assumes
+ that
+ the
+ network
+ in
+ wave
+ 3
+ will
+ just
+ be
+ the
+same
+ as
+ the
+ network
+ in
+ wave
+ 2.
+ This
+ is
+ known
+ as
+ the
+ persistence
+technique
+ in
+ weather
+ forecasting
+ (the
+ weather
+ tomorrow
+ will
+ be
+like
+ the
+ weather
+ today)
+ –
+ a
+ usually
+ not
+ very
+ accurate
+ and
+ certainly
+not
+ very
+ useful
+ (yet
+ simple)
+ technique
+ that
+ is
+ often
+ considered
+ as
+a
+ baseline
+ prediction.
+ A
+ further
+ comparison
+ is
+ the
+ simple
+ logistic
+regression
+ that
+ excludes
+ all
+ dependence
+ terms,
+ but
+ maintains
+ the
+information
+ on
+ all
+ covariates
+ in
+ the
+ model.
+Results
+ are
+ presented
+ in
+ Fig.
+ 4. The
+ y-axis
+ denotes
+ the
+ value
+for
+ precision
+ and
+ recall
+ of
+ the
+ 1000
+ predictions
+ for
+ either
+ model,
+the
+ different
+ models
+ are
+ stringed
+ on
+ the
+ x-axis.
+ It
+ can
+ be
+ seen
+ that
+neither
+ model
+ predicts
+ better
+ than
+ the
+ simple
+ persistence
+ model,
+suggesting
+ that
+ neither
+ should
+ be
+ used
+ for
+ tie-level
+ prediction.
+ In
+fact,
+ both
+ models
+ are,
+ on
+ average
+ only
+ marginally
+ better
+ than
+ the
+logistic
+ regression
+ that
+ does
+ not
+ use
+ any
+ tie-dependence
+ for
+ pre-
+diction
+ and
+ the
+ 95%
+ conﬁdence
+ intervals
+ overlap
+ in
+ almost
+ all
+ cases
+for
+ the
+ different
+ models.
+ These
+ results
+ are
+ in
+ line
+ with
+ our
+ intu-
+ition
+ that
+ predicting
+ rare
+ events,
+ such
+ as
+ the
+ creation
+ of
+ new
+ ties
+in
+ a
+ sparse
+ network
+ is
+ extremely
+ difﬁcult
+ in
+ a
+ regression
+ frame-
+work.
+ In
+ this
+ light,
+ we
+ view
+ any
+ differences
+ in
+ prediction
+ between
+the
+ TERGM
+ and
+ the
+ SAOM
+ as
+ irrelevant.
+ A
+ further
+ discussion
+ of
+the
+ results,
+ including
+ the
+ differences
+ between
+ the
+ logit
+ prediction
+and
+ the
+ TERGM
+ prediction
+ can
+ be
+ found
+ in
+ Appendix
+ A.2.2
+ of
+ the
+Supplementary
+ data.
+6.
+ Discussion
+ and
+ conclusion
+Several
+ approaches
+ to
+ analysing
+ longitudinal
+ network
+ data
+ have
+been
+ proposed
+ in
+ the
+ literature
+ on
+ statistical
+ network
+ modelling
+recently.
+ In
+ this
+ article,
+ we
+ compared
+ two
+ of
+ these
+ models
+ that
+ are
+being
+ applied
+ by
+ practical
+ researchers
+ –
+ the
+ SAOM
+ and
+ the
+ TERGM.
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+189
+Table
+ 3
+Estimated
+ Parameters
+ used
+ for
+ out-of-sample
+ prediction
+ for
+ the
+ ASSIST
+ data.
+SAOM
+ 
+TERGM
+est
+ 
+s.e.
+ 
+est.
+ 
+s.e.
+Rate
+ 
+10.02
+ 
+***
+ 
+(1.20)
+ 
+1.90
+ 
+***
+ 
+(0.14)
+ 
+Stability
+Density
+ 
+−2.20
+ 
+***
+ 
+(0.33)
+ 
+−5.49
+ 
+***
+ 
+(0.66)
+ 
+Density
+Reciprocity
+ 
+2.60
+ 
+***
+ 
+(0.28)
+ 
+2.36
+ 
+***
+ 
+(0.30)
+ 
+Reciprocity
+GWESP
+ trans
+ 
+1.89
+ 
+***
+ 
+(0.16)
+ 
+1.35
+ 
+***
+ 
+(0.10)
+ 
+Alternating
+ Trans.
+ Trip
+GWESP  trans
+ * Recip.
+ 
+−1.12
+ 
+***
+ 
+(0.33)
+ 
+−0.42
+ 
+***
+ 
+(0.09)
+ 
+Alternating
+ Cyclic.
+ Trip
+Indegree
+ Popularity
+ (sqrt)
+ 
+−0.06
+ 
+(0.16)
+ 
+0.25
+ 
+(0.32)
+ 
+Alternating
+ In-stars
+Outdeg.
+ Popularity
+ (sqrt)
+ 
+−0.50
+ 
+**
+ 
+(0.17)
+ 
+1.18
+ 
+**
+ 
+(0.35)
+ 
+Alternating
+ Two-Paths
+Sex
+ Alter
+ 
+0.13
+ 
+(0.14)
+ 
+−0.51
+ 
+* 
+(0.20)
+ 
+Sex
+ Alter
+Sex
+ Ego
+−0.10
+(0.16)
+ 
+−0.81
+**
+ 
+(0.27)
+ 
+Sex
+ Ego
+Same  Sex
+0.46
+ 
+**
+ 
+(0.15)
+ 
+1.40
+ 
+***
+ 
+(0.32)
+ 
+Sex
+ Interaction
+Fig.
+ 4.
+ Predictive
+ performance
+ for
+ out-of-sample
+ tests
+ of
+ SAOM
+ and
+ TERGM
+ for
+ ASSIST
+ data
+ and
+ Fish
+ data.
+The
+ former
+ is
+ a
+ process-based,
+ continuous-time
+ model
+ in
+ which
+dependence
+ unfolds
+ over
+ time,
+ while
+ in
+ the
+ latter,
+ network
+ depen-
+dence
+ is
+ modelled
+ within
+ an
+ observation
+ and
+ decoupled
+ from
+ time.
+This
+ means
+ that
+ the
+ SAOM,
+ and
+ other
+ process-based
+ models,
+ anal-
+yse
+ change
+ and
+ network
+ evolution.
+ The
+ TERGM,
+ and
+ models
+ that
+treat
+ time
+ and
+ tie
+ dependence
+ similarly,
+ do
+ not
+ analyse
+ change
+ in
+the
+ included
+ dependence
+ parameters,
+ but
+ can
+ only
+ show
+ that
+ some
+structures
+ exist
+ more
+ than
+ expected
+ by
+ chance,
+ controlling
+ for
+ the
+past
+ where
+ the
+ past
+ carries
+ some
+ of
+ the
+ dependencies.
+ Parameter
+sizes
+ thus
+ have
+ no
+ consistent
+ micro-level
+ interpretation.
+ This
+ paper
+shows
+ that
+ including
+ multiple
+ waves
+ of
+ network
+ data
+ in
+ a
+ statistical
+model
+ is
+ not
+ sufﬁcient
+ to
+ constitute
+ a
+ longitudinal
+ network
+ model
+allowing
+ inference
+ about
+ change
+ processes.
+One
+ implication
+ from
+ this
+ discussion
+ is
+ that,
+ when
+ working
+with
+ more
+ than
+ two
+ data
+ points,
+ the
+ TERGM
+ (implicitly)
+ requires
+equidistant
+ observations.
+ Otherwise,
+ the
+ interpretation
+ of
+ lagged
+predictors
+ across
+ data
+ periods
+ becomes
+ rather
+ incoherent.
+ Deciding
+whether
+ equidistant
+ observations
+ constitute
+ network
+ data
+ where,
+between
+ waves,
+ the
+ same
+ amount
+ of
+ time
+ has
+ passed,
+ or
+ whether
+the
+ same
+ amount
+ of
+ network
+ change
+ has
+ materialised
+ is
+ a
+ further
+complication.
+When
+ considering
+ predictive
+ capabilities,
+ the
+ discussions
+ in
+ this
+paper
+ suggest
+ that
+ (i)
+ evaluating
+ discrete-time
+ statistical
+ network
+models
+ that
+ include
+ dependence
+ terms
+ within
+ the
+ second
+ time-
+point
+ based
+ on
+ tie-level
+ predictive
+ power
+ is
+ debatable,
+ as
+ they
+generally
+ do
+ not
+ improve
+ over
+ non-network
+ models.10 As
+ an
+ illus-
+tration
+ of
+ the
+ modest
+ predictive
+ performance
+ we
+ show
+ that
+ (ii)
+ both
+discussed
+ network
+ models
+ perform
+ poorly
+ when
+ used
+ for
+ tie-level
+prediction.
+ We  think
+ this
+ warrants
+ the
+ conclusion
+ that
+ predictive
+power
+ is
+ not
+ a
+ useful
+ criterion
+ for
+ discriminating
+ between
+ these
+types
+ of
+ model.
+ If
+ one
+ believes
+ that
+ prediction
+ is
+ a
+ chief
+ objective
+ of
+modelling,
+ one
+ might
+ look
+ to
+ a
+ different
+ strand
+ of
+ literature
+ on
+ link-
+prediction,
+ originating
+ in
+ the
+ physical
+ sciences
+ (see
+ Lü
+ and
+ Zhou,
+2011) and
+ not
+ aiming
+ at
+ explaining
+ processes
+ of
+ change.
+ Today,
+experts
+ in
+ machine
+ learning
+ can
+ efﬁciently
+ solve
+ such
+ prediction
+tasks,
+ but
+ high
+ predictive
+ accuracy
+ comes
+ at
+ the
+ cost
+ of
+ little
+ insight
+(Athey,
+ 2017;
+ Breiman,
+ 2001).
+Our
+ conclusion
+ that
+ TERGM
+ parameters
+ strongly
+ depend
+ on
+ the
+length
+ of
+ the
+ interval
+ between
+ two
+ waves
+ have
+ an
+ interesting
+ con-
+nection
+ to
+ the
+ ﬁndings
+ of
+ Shalizi
+ and
+ Rinaldo
+ (2013). They
+ show
+that
+ ERGM
+ parameters
+ for
+ two
+ networks
+ of
+ different
+ size
+ have
+ to
+be
+ different
+ for
+ most
+ cases
+ relevant
+ to
+ empirical
+ researchers.
+ These
+ﬁndings
+ were
+ previously
+ suggested
+ by
+ e.g.
+ Hunter
+ and
+ Handcock
+10 These
+ conclusions
+ apply
+ to
+ the
+ models
+ as
+ currently
+ used
+ in
+ the
+ literature;
+ in
+case
+ dependence
+ terms
+ that
+ explicitly
+ model
+ the
+ types
+ of
+ ties
+ that
+ are
+ created
+ or
+maintained
+ are
+ included,
+ the
+ conclusion
+ are
+ likely
+ to
+ differ.
+
+
+--- PAGE BREAK ---
+
+190
+ 
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+(2006)
+ and
+ equally
+ apply
+ to
+ TERGMs
+ and
+ SAOMs.
+ We  add
+ to
+ these
+ﬁndings
+ of
+ non-scalability
+ in
+ terms
+ of
+ system
+ size
+ to
+ by
+ a
+ temporal
+dimension.
+ In
+ a
+ concise
+ way,
+ our
+ ﬁndings
+ show
+ that
+ the
+ SAOM
+ is
+temporally
+ scalable,
+ while
+ the
+ TERGM
+ is
+ not.
+In
+ this
+ article
+ we
+ mainly
+ focus
+ on
+ principle
+ considerations
+ of
+process-based
+ and
+ auto-regressive
+ models;
+ thus,
+ we
+ neglect
+ some
+further
+ distinguishing
+ features
+ of
+ these
+ models.
+ While
+ not
+ directly
+related
+ to
+ the
+ theoretical
+ foundations
+ of
+ the
+ model
+ that
+ we
+ focussed
+on
+ here,
+ there
+ are
+ further
+ points
+ that
+ will
+ be
+ especially
+ relevant
+ to
+applied
+ researchers.
+ Future
+ research
+ should
+ address
+ these
+ issues
+in
+ more
+ detail,
+ for
+ example
+ how
+ easily
+ constraints
+ imposed
+ by
+the
+ data
+ can
+ be
+ incorporated.
+ Changing
+ composition
+ of
+ a
+ network
+happens
+ regularly,
+ especially
+ in
+ political
+ sciences,
+ where
+ political
+actors
+ are
+ newly
+ formed,
+ split
+ or
+ dissolve
+ between
+ observations.
+For
+ process-oriented
+ models
+ in
+ which
+ the
+ passing
+ of
+ time
+ is
+ consid-
+ered,
+ changing
+ composition
+ can
+ be
+ taken
+ into
+ account
+ by
+ creating
+ a
+new
+ actor
+ at
+ some
+ exogenously
+ deﬁned
+ time-point
+ during
+ the
+ mod-
+elled
+ process.
+ Discrete-time
+ models
+ currently
+ lack
+ a
+ comparable
+solution.
+This
+ is
+ tightly
+ linked
+ to
+ modelling
+ of
+ multiple
+ dependent
+ vari-
+ables,
+ for
+ example
+ modelling
+ a
+ network
+ and
+ actor
+ attributes
+interdependently,
+ or
+ modelling
+ multiple
+ relations
+ between
+ the
+same
+ or
+ interlocking
+ set(s)
+ of
+ actors.
+ A
+ continuous-time
+ approach
+can
+ model
+ the
+ reciprocal
+ inﬂuences
+ between
+ these
+ dependent
+ vari-
+ables
+ naturally,
+ as
+ the
+ idea
+ of
+ mini-steps
+ allows
+ an
+ understanding
+of
+ how
+ change
+ in
+ one
+ variable
+ can
+ lead
+ to
+ change
+ in
+ another,
+ poten-
+tially
+ creating
+ feedback-mechanisms.
+ In
+ discrete-time
+ models
+ it
+ is
+not
+ possible
+ to
+ take
+ changes
+ that
+ occur
+ between
+ observations
+ into
+account
+ when
+ considering
+ how
+ multiple
+ variables
+ mutually
+ affect
+one
+ another.
+ Discrete-time
+ models
+ have
+ difﬁculty
+ instantiating
+feedback
+ processes
+ happening
+ in-between
+ observation
+ moments,
+thereby
+ missing
+ a
+ lot
+ of
+ what
+ makes
+ network
+ research
+ interesting
+and
+ worth
+ the
+ effort.
+Finally,
+ some
+ notes
+ on
+ processes
+ that
+ directly
+ violate
+ the
+assumption
+ of
+ stepwise
+ updating
+ of
+ a
+ network
+ are
+ warranted.
+ This
+is
+ the
+ case,
+ for
+ example,
+ when
+ a
+ group
+ of
+ actors
+ decides
+ jointly
+ and
+interdependently
+ to
+ form
+ ties
+ amongst
+ themselves
+ or
+ to
+ a
+ third
+party.
+ Continuous-time
+ models
+ that
+ are
+ based
+ on
+ tie
+ changes
+ one
+at
+ a
+ time,
+ like
+ the
+ SAOM,
+ have
+ no
+ current
+ implementation
+ that
+allows
+ this
+ (it
+ should
+ be
+ noted
+ that
+ the
+ framework
+ of
+ the
+ SAOM
+does
+ not
+ forbid
+ such
+ an
+ extension,
+ though).
+ However,
+ the
+ TERGM
+has
+ no
+ clear
+ advantage
+ here
+ either.
+ The
+ only
+ dependencies
+ that
+ the
+TERGM
+ affords
+ are
+ the
+ standard
+ ERGM
+ dependencies
+ and
+ these
+ are
+not
+ well-equipped
+ to
+ explain
+ ties
+ forming
+ as
+ a
+ result
+ of
+ coordinated
+action
+ but
+ would,
+ in
+ terms
+ of
+ interpretation,
+ have
+ to
+ be
+ interpreted
+in
+ terms
+ of
+ how
+ the
+ ties
+ formed
+ conditionally
+ on
+ the
+ others
+ (like
+ the
+SAOM,
+ the
+ ERGM
+ does
+ not
+ generally
+ forbid
+ such
+ extensions).
+ Thus,
+while
+ the
+ TERGM
+ does
+ not
+ explicitly
+ disallow
+ coordinated
+ action,
+it
+ also
+ has
+ no
+ way
+ of
+ accounting
+ for
+ coordinated
+ action.
+6.1.
+ Advice
+ for
+ model
+ selection
+As
+ outlined
+ in
+ the
+ introduction,
+ model
+ performance
+ in
+ gen-
+eral
+ can
+ be
+ evaluated
+ on
+ the
+ basis
+ of
+ explanatory
+ or
+ predictive
+power.
+ Recent
+ model
+ comparisons
+ had
+ considered
+ relative
+ out-of-
+sample
+ predictive
+ power
+ a
+ valid
+ criterion
+ of
+ comparison
+ (Leifeld
+and
+ Cranmer
+ 2016).
+ However,
+ such
+ comparisons
+ ignore
+ the
+ fact
+that
+ both
+ models
+ suffer
+ –
+ much
+ like
+ most
+ statistical
+ models
+ in
+ use
+for
+ studying
+ social
+ phenomena
+ –
+ from
+ their
+ inability
+ to
+ predict
+ rare
+events
+ such
+ as
+ the
+ creation
+ of
+ new
+ ties
+ in
+ a
+ sparse
+ network.
+ Because
+a
+ trivial
+ persistence
+ model
+ consistently
+ outperformed
+ both
+ longi-
+tudinal
+ network
+ models,
+ we
+ do
+ not
+ believe
+ predictive
+ power
+ on
+the
+ tie-level
+ a
+ useful
+ criterion
+ for
+ model
+ comparison.
+ This
+ empiri-
+cal
+ problem
+ is
+ in
+ addition
+ to
+ the
+ theoretical
+ issues
+ with
+ evaluating
+models
+ based
+ on
+ their
+ predictive
+ capabilities,
+ as
+ outlined
+ in
+ the
+introduction.11 This
+ leaves
+ explanatory
+ power
+ as
+ a
+ criterion
+ for
+model
+ selection.
+Here
+ the
+ advice
+ is
+ very
+ clear
+ and
+ follows
+ directly
+ from
+ the
+ dis-
+cussion
+ in
+ Section
+ 4.
+ Is
+ a
+ researcher
+ interested
+ in
+ explaining
+ the
+evolution,
+ i.e.
+ change
+ in
+ a
+ network
+ between
+ two
+ time-points,
+ or
+interested
+ in
+ explaining
+ the
+ structure
+ of
+ an
+ observed
+ network?
+ In
+the
+ former
+ case
+ we  believe
+ we
+ have
+ made
+ a
+ compelling
+ case
+ that
+process-based
+ models,
+ such
+ as
+ the
+ SAOM
+ (or
+ the
+ LERGM)
+ are
+ prefer-
+able,
+ given
+ that
+ they
+ directly
+ model
+ a
+ process,
+ which
+ results
+ in
+ both
+consistent
+ model
+ parameters
+ independent
+ of
+ the
+ duration
+ of
+ the
+underlying
+ process
+ and
+ a
+ meaningful
+ micro-level
+ interpretation,
+allowing
+ direct
+ inference
+ on
+ underlying
+ social
+ mechanisms.
+If
+ a
+ researcher
+ is
+ interested
+ in
+ explaining
+ the
+ structure
+ of
+ a
+network,
+ the
+ cross-sectional
+ class
+ of
+ ERGMs
+ is
+ a
+ well-established
+starting
+ point.
+ If
+ additionally
+ the
+ previous
+ states
+ of
+ the
+ same
+ net-
+work
+ should
+ be
+ taken
+ into
+ account,
+ the
+ TERGM
+ might
+ be
+ used,
+but
+ its
+ limitations
+ in
+ parameter
+ interpretability
+ and
+ consistency
+should
+ be
+ considered.
+ When
+ a
+ researcher
+ is
+ interested
+ in
+ whether
+modelled
+ network
+ dependencies
+ are
+ present
+ in
+ a
+ network
+ beyond
+dependencies
+ that
+ are
+ solely
+ a
+ relic
+ from
+ the
+ past,
+ one
+ could
+ for
+example
+ compare
+ results
+ of
+ a
+ TERGM
+ and
+ a
+ cross-sectional
+ ERGM
+of
+ the
+ second
+ network.
+Our
+ critique
+ of
+ the
+ TERGM’s
+ parameter
+ interpretability
+ and
+consistency
+ does
+ not
+ mean
+ that
+ discrete-time
+ network
+ models
+in
+ general
+ should
+ have
+ no
+ place
+ whatsoever
+ in
+ the
+ researcher’s
+toolbox.
+ In
+ clearly
+ round-based
+ network-evolution
+ processes,
+ for
+example
+ experimental
+ research
+ in
+ lab-settings,
+ or
+ when
+ knowl-
+edge
+ about
+ network
+ ties
+ is
+ made
+ public
+ only
+ at
+ speciﬁc,
+ equidistant
+times,
+ treating
+ this
+ as
+ evolving
+ in
+ discrete
+ time
+ may
+ be
+ warranted.
+However,
+ for
+ these
+ types
+ of
+ data
+ models
+ like
+ the
+ proposed
+ TERGM-
+variant
+ by
+ Hanneke
+ et
+ al.
+ (2010), might
+ be
+ used,
+ where
+ whether
+ a
+tie
+ exists
+ in
+ this
+ round
+ is
+ only
+ dependent
+ on
+ structures
+ of
+ the
+ net-
+work
+ in
+ previous
+ rounds,
+ thus
+ marrying
+ time
+ and
+ tie
+ dependence
+in
+ a
+ (maybe)
+ more
+ meaningful
+ way.
+6.2.
+ Conclusion
+Overall,
+ the
+ discussion
+ in
+ this
+ paper
+ shows
+ that
+ there
+ is
+ a
+ mis-
+match
+ between
+ some
+ of
+ the
+ research
+ questions
+ that
+ are
+ typically
+posited
+ for
+ longitudinal
+ networks
+ and
+ the
+ kind
+ of
+ substantive
+research
+ questions
+ that
+ can
+ be
+ answered
+ using
+ a
+ discrete-time
+model
+ (such
+ as
+ TERGM).
+ If
+ our
+ goal
+ is
+ to
+ understand
+ change
+ in
+the
+ world
+ around
+ us,
+ we
+ strongly
+ advocate
+ for
+ statistical
+ mod-
+els
+ that
+ model
+ the
+ processes
+ of
+ change
+ we
+ observe
+ in
+ the
+ world
+around
+ us.
+ This
+ allows
+ a
+ direct
+ test
+ of
+ theories
+ in
+ the
+ social
+ sci-
+ences
+ and
+ inference
+ on
+ how
+ networks
+ unfold
+ over
+ time.
+ This
+ is
+especially
+ important,
+ given
+ the
+ focus
+ on
+ using
+ social
+ mechanisms
+to
+ explain
+ observed
+ social
+ phenomena.
+ Whether
+ these
+ processes
+are
+ best
+ represented
+ by
+ actor-based
+ models
+ (such
+ as
+ the
+ SAOM)
+or
+ tie-based
+ models
+ (such
+ as
+ the
+ LERGM)
+ is
+ a
+ different
+ matter.
+In
+ case
+ a
+ researcher
+ assumes
+ a
+ completely
+ different
+ process,
+ not
+based
+ on
+ sequential,
+ myopic
+ changes,
+ but
+ based
+ on
+ for
+ example
+co-ordinated
+ or
+ strategic
+ action,
+ we
+ strongly
+ advocate
+ a
+ principled
+approach
+ that
+ involves
+ thinking
+ about
+ the
+ assumed
+ process
+ and
+which
+ established
+ model
+ represents
+ this
+ process
+ best.
+ There
+ is,
+ of
+course,
+ always
+ the
+ possibility
+ to
+ develop
+ a
+ model
+ tailored
+ to
+ speciﬁc
+applications
+ and
+ theoretical
+ assumptions.
+ We
+ are
+ looking
+ forward
+to
+ future
+ developments
+ that
+ advance
+ our
+ understanding
+ of
+ network
+change
+ processes
+ of
+ various
+ kinds.
+11 However,
+ this
+ position
+ might
+ require
+ further
+ treatment
+ if
+ model
+ speciﬁcations
+and
+ empirical
+ cases
+ are
+ found
+ for
+ which
+ good
+ predictive
+ power
+ of
+ either
+ model
+ is
+achieved.
+ In
+ this
+ case,
+ comparing
+ these
+ models
+ to
+ further
+ ones,
+ for
+ example
+ different
+latent
+ space
+ models
+ that
+ makes
+ use
+ of
+ a
+ previous
+ time-point
+ and
+ p2
+ models,
+ is
+ useful.
+
+
+--- PAGE BREAK ---
+
+P.
+ Block
+ et
+ al.
+ / Social
+ Networks
+ 52
+ (2018)
+ 180–191
+ 
+191
+Acknowledgements
+The
+ authors
+ would
+ like
+ to
+ thank
+ the
+ network
+ groups
+ at
+ Nufﬁeld
+College,
+ Groningen
+ University,
+ ETH
+ Zürich
+ and
+ University
+ of
+ Mel-
+bourne
+ for
+ their
+ valuable
+ comments
+ and
+ feedback
+ to
+ this
+ work.
+Appendix
+ A.
+ Supplementary
+ data
+Supplementary
+ data
+ associated
+ with
+ this
+ article
+ can
+ be
+ found,
+in
+ the
+ online
+ version,
+ at
+ http://dx.doi.org/10.1016/j.socnet.2017.08.
+001.
+References
+Athey,
+ Susan,
+ 2017.
+ Beyond
+ prediction:
+ using
+ big
+ data
+ for
+ policy
+ problems.
+ Science
+355,
+ 483–485.
+Block,
+ P.,
+ Stadtfeld,
+ C.,
+ Snijders,
+ T.A.B.,
+ 2016.
+ Forms
+ of
+ dependence:
+ comparing
+SAOMs
+ and
+ ERGMs
+ from
+ basic
+ principles.
+ Sociol.
+ Methods
+ Res.,
+ http://dx.doi.
+org/10.1177/0049124116672680
+ (in
+ press).
+Breiman,
+ Leo,
+ 2001.
+ Statistical
+ modeling:
+ the
+ two
+ cultures.
+ Stat.
+ Sci.
+ 16
+ (3),
+199–231.
+Desmarais,
+ B.A.,
+ Cranmer,
+ S.J.,
+ 2012.
+ Micro-Level
+ interpretation
+ of
+ exponential
+random
+ graph
+ models
+ with
+ application
+ to
+ estuary
+ networks.
+ Policy
+ Stud.
+ J.
+ 40
+(3),
+ 402–434.
+Duijn,
+ M.A.J.,
+ van
+ Snijders,
+ T.A.B.,
+ Zijlstra,
+ B.J.,
+ 2004.
+ p2:
+ a
+ random
+ effects
+ model
+with
+ covariates
+ for
+ directed
+ graphs.
+ Stat.
+ Neerlandica
+ 58
+ (2),
+ 234–254.
+Elster,
+ J.,
+ 2007.
+ Explaining
+ Social
+ Behavior:
+ More
+ Nuts
+ and
+ Bolts
+ for
+ the
+ Social
+Sciences.
+ Cambridge
+ University
+ Press,
+ Cambridge,
+ UK.
+Epstein,
+ J.M.,
+ 2008.
+ Why
+ model?
+ J.
+ Artif.
+ Soc.
+ Social
+ Simul.
+ 11
+ (4),
+ 12.
+Frank,
+ O.,
+ Strauss,
+ D.,
+ 1986.
+ Markov
+ graphs.
+ J.
+ Am.
+ Stat.
+ Assoc.
+ 81
+ (395),
+ 832–842.
+Friedman,
+ M.,
+ 1953.
+ The
+ methodology
+ of
+ positive
+ economics.
+ In:
+ Friedman,
+ M.
+(Ed.),
+ Essays
+ in
+ Positive
+ Economics.
+ University
+ of
+ Chicago
+ Press,
+ Chicago,
+ pp.
+210–244.
+Gneiting,
+ T.,
+ Balabdaoui,
+ F.,
+ Raftery,
+ A.E.,
+ 2007.
+ Probabilistic
+ forecasts,
+ calibration
+and
+ sharpness.
+ J.
+ R.
+ Stat.
+ Soc.
+ Ser.
+ B:
+ Stat.
+ Methodol.
+ 69
+ (2),
+ 243–268.
+Hamill,
+ T.M.,
+ 2001.
+ Interpretation
+ of
+ rank
+ histograms
+ for
+ verifying
+ ensemble
+forecasts.
+ Mon.
+ Weather
+ Rev.
+ 129
+ (3),
+ 550–560.
+Hanneke,
+ S.,
+ Fu,
+ W.,
+ Xing,
+ E.P.,
+ 2010.
+ Discrete
+ temporal
+ models
+ of
+ social
+ networks.
+Electron.
+ J.
+ Stat.
+ 4,
+ 585–605.
+Hedström,
+ P.,
+ 2005.
+ Dissecting
+ the
+ Social:
+ On
+ the
+ Principles
+ of
+ Analytical
+ Sociology.
+Cambridge
+ University
+ Press,
+ Cambridge,
+ UK.
+Holland,
+ P.W.,
+ Leinhardt,
+ S.,
+ 1977.
+ A
+ dynamic
+ model
+ for
+ social
+ networks.
+ J.
+ Math.
+Sociol.
+ 5
+ (1),
+ 5–20.
+Hollway,
+ J.,
+ Koskinen,
+ J.,
+ 2016.
+ Multilevel
+ embeddedness:
+ the
+ case
+ of
+ the
+ global
+ﬁsheries
+ governance
+ complex.
+ Social
+ Netw.
+ 44,
+ 281–294.
+Hunter,
+ D.R.,
+ Handcock,
+ M.S.,
+ 2006.
+ Inference
+ in
+ curved
+ exponential
+ family
+ models
+for
+ networks.
+ J.
+ Comput.
+ Graphical
+ Stat.
+ 15
+ (3),
+ 565–583.
+Hunter,
+ D.R.,
+ Goodreau,
+ S.M.,
+ Handcock,
+ M.S.,
+ 2008a.
+ Goodness
+ of
+ ﬁt
+ of
+ social
+network
+ models.
+ J.
+ Am.
+ Stat.
+ Assoc.
+ 103
+ (481),
+ 248–258.
+Hunter,
+ D.R.,
+ Handcock,
+ M.S.,
+ Butts,
+ C.T.,
+ Goodreau,
+ S.M.,
+ Morris,
+ M.,
+ 2008b.
+ Ergm:
+ a
+package
+ to
+ ﬁt,
+ simulate
+ and
+ diagnose
+ exponential-Family
+ models
+ for
+ networks.
+J.
+ Stat.
+ Softw.
+ 24
+ (3).
+Jasso,
+ G.,
+ 1988.
+ Principles
+ of
+ theoretical
+ analysis.
+ Sociol.
+ Theory
+ 6
+ (1),
+ 1–20.
+Koskinen,
+ J.H.,
+ Snijders,
+ T.A.B.,
+ 2007.
+ Bayesian
+ inference
+ for
+ dynamic
+ social
+network
+ data.
+ J.
+ Stat.
+ Plan.
+ Inference
+ 137
+ (12),
+ 3930–3938.
+Koskinen,
+ J.,
+ Caimo,
+ A.,
+ Lomi,
+ A.,
+ 2015.
+ Simultaneous
+ modeling
+ of
+ initial
+ conditions
+and
+ time
+ heterogeneity
+ in
+ dynamic
+ networks:
+ an
+ application
+ to
+ Foreign
+ Direct
+Investments.
+ Netw.
+ Sci.
+ 3
+ (1),
+ 58–77.
+Krivitsky,
+ P.N.,
+ Handcock,
+ M.S.,
+ 2014.
+ A
+ separable
+ model
+ for
+ dynamic
+ networks.
+ J.
+ R.
+Stat.  Soc.
+ Ser.
+ B
+ Stat.
+ Methodol.
+ 76
+ (1),
+ 29–46.
+Lü,
+ L.,
+ Zhou,
+ T.,
+ 2011.
+ Link
+ prediction
+ in
+ complex
+ networks:
+ a
+ survey.
+ Physica
+ A
+ 390
+(6),  1150–1170.
+Leenders,
+ R.T.a.J.,
+ 1995.
+ Models
+ for
+ network
+ dynamics:
+ a
+ Markovian
+ framework.
+ J.
+Math.
+ Sociol.
+ 20
+ (1),
+ 1–21.
+Leifeld,
+ P.,
+ Cranmer,
+ S.J.,
+ 2016.
+ A
+ Theoretical
+ and
+ Empirical
+ Comparison
+ of
+ the
+Temporal
+ Exponential
+ Random
+ Graph
+ Model
+ and
+ the
+ Stochastic
+Actor-Oriented
+ Model.
+ Working
+ Paper.
+ https://arxiv.org/pdf/1506.06696.pdf.
+Lerner,
+ J.,
+ Indlekofer,
+ N.,
+ Nick,
+ B.,
+ Brandes,
+ U.,
+ 2013.
+ Conditional
+ independence
+ in
+dynamic
+ networks.
+ J.
+ Math.
+ Psychol.
+ 57
+ (6),
+ 275–283.
+Lospinoso,
+ J.A.,
+ 2012.
+ Statistical
+ Methods
+ for
+ Social
+ Network
+ Dynamics.
+ DPhil
+Thesis.
+ University
+ of
+ Oxford,
+ Oxford.
+Lusher,
+ D.,
+ Koskinen,
+ J.,
+ Robins,
+ G.,
+ 2013.
+ Exponential
+ Random
+ Graph
+ Models
+ for
+Social
+ Networks:
+ Theories,
+ Methods
+ and
+ Applications.
+ Cambridge
+ University
+Press,
+ Cambridge,
+ UK.
+McFarland,
+ D.A.,
+ Moody,
+ J.,
+ Diehl,
+ D.,
+ Smith,
+ J.A.,
+ Thomas,
+ R.J.,
+ 2014.
+ Network
+ecology
+ and
+ adolescent
+ social
+ structure.
+ Am.
+ Sociol.
+ Rev.
+ 79
+ (6),
+ 1088–1121.
+Pattison,
+ P.E.,
+ Snijders,
+ T.A.B.,
+ 2013.
+ Modeling
+ social
+ networks:
+ next
+ steps.
+ In:
+Lusher,
+ D.,
+ Koskinen,
+ J.,
+ Robins,
+ G.L.
+ (Eds.),
+ Exponential
+ Random
+ Graph
+ Models
+for  Social
+ Networks:
+ Theories,
+ Methods
+ and
+ Applications.
+ Cambridge
+University
+ Press,
+ Cambridge,
+ UK,
+ pp.
+ 287–301.
+Pattison,
+ P.,
+ Wasserman,
+ S.,
+ 1999.
+ Logit
+ models
+ and
+ logistic
+ regressions
+ for
+ social
+networks:
+ {II}.
+ Multivariate
+ relations.
+ Br.
+ J.
+ Math.
+ Stat.
+ Psychol.
+ 52
+ (2),
+ 169–193.
+Ripley,
+ R.M.,
+ Snijders,
+ T.A.B.,
+ Boda,
+ Z.,
+ Vörös,
+ A.,
+ Preciado,
+ P.,
+ 2016.
+ Manual
+ for
+RSiena.
+ University
+ of
+ Oxford,
+ Department
+ of
+ Statistics;
+ Nufﬁeld
+ College,
+ Oxford.
+Robins,
+ G.,
+ Pattison,
+ P.,
+ 2001.
+ Random
+ graph
+ models
+ for
+ temporal
+ processes
+ in
+social
+ networks.
+ J.
+ Math.
+ Sociol.
+ 25
+ (1),
+ 5–41.
+Robins,
+ G.,
+ Pattison,
+ P.,
+ Woolcock,
+ J.,
+ 2005.
+ Small
+ and
+ other
+ worlds:
+ global
+ network
+structures
+ from
+ local
+ processes.
+ Am.
+ J.
+ Sociol.
+ 110
+ (4),
+ 894–936.
+Salter-Townshend,
+ M.,
+ White,
+ A.,
+ Gollini,
+ I.,
+ Murphy,
+ T.B.,
+ 2012.
+ Review
+ of
+statistical
+ network
+ analysis:
+ models,
+ algorithms,
+ and
+ software.
+ Stat.
+ Anal.
+ Data
+Mining
+ 5
+ (4),
+ 243–264.
+Schweinberger,
+ M.,
+ 2012.
+ Statistical
+ modelling
+ of
+ network
+ panel
+ data:
+ goodness
+ of
+ﬁt.
+ Br.
+ J.
+ Math.
+ Stat.
+ Psychol.
+ 65
+ (2),
+ 263–281.
+Shalizi,
+ C.R.,
+ Rinaldo,
+ A.,
+ 2013.
+ Consistency
+ under
+ sampling
+ of
+ exponential
+ random
+graph
+ models.
+ Ann.
+ Stat.
+ 41
+ (2),
+ 508–535.
+Snijders,
+ T.A.B.,
+ Bosker,
+ R.J.,
+ 2012.
+ Multilevel
+ Analysis:
+ An
+ Introduction
+ to
+ Basic
+ and
+Advanced
+ Multilevel
+ Modeling.
+ Sage,
+ London.
+Snijders,
+ T.A.B.,
+ Koskinen,
+ J.,
+ 2013.
+ Longitudinal
+ models.
+ In:
+ Lusher,
+ D.,
+ Koskinen,
+ J.,
+Robins,
+ G.
+ (Eds.),
+ Exponential
+ Random
+ Graph
+ Models
+ for
+ Social
+ Networks:
+Theories,
+ Methods
+ and
+ Applications.
+ Cambridge
+ University
+ Press,
+ Cambridge,
+pp.
+ 130–140.
+Snijders,
+ T.A.B.,
+ Pattison,
+ P.,
+ Robins,
+ G.,
+ Handcock,
+ M.S.,
+ 2006.
+ New
+ speciﬁcations
+for  exponential
+ random
+ graph
+ models.
+ Sociol.
+ Methodol.
+ 36
+ (1),
+ 99–153.
+Snijders,
+ T.A.B.,
+ Koskinen,
+ J.,
+ Schweinberger,
+ M.,
+ 2010a.
+ Maximum
+ likelihood
+estimation
+ for
+ social
+ network
+ dynamics.
+ Ann.
+ Appl.
+ Stat.
+ 4
+ (2),
+ 567–588.
+Snijders,
+ T.A.B.,
+ van
+ de
+ Bunt,
+ G.,
+ Steglich,
+ C.E.G.,
+ 2010b.
+ Introduction
+ to
+ stochastic
+actor-based
+ models
+ for
+ network
+ dynamics.
+ Social
+ Netw.
+ 32
+ (1),
+ 44–60.
+Snijders,
+ T.A.B.,
+ 2001.
+ The
+ statistical
+ evaluation
+ of
+ social
+ network
+ dynamics.
+ Sociol.
+Methodol.
+ 31
+ (1),
+ 1–33.
+Snijders,
+ T.A.B.,
+ 2005.
+ Models
+ for
+ longitudinal
+ network
+ data.
+ In:
+ Carrington,
+ P.,
+Scott,
+ J.,
+ Wasserman,
+ S.
+ (Eds.),
+ Models
+ and
+ Methods
+ in
+ Social
+ Network
+ Analysis.
+Cambridge
+ University
+ Press,
+ New
+ York,
+ pp.
+ 215–247.
+Steglich,
+ C.E.G.,
+ Snijders,
+ T.A.B.,
+ Pearson,
+ M.,
+ 2010.
+ Dynamic
+ networks
+ and
+behavior:
+ separating
+ selection
+ from
+ inﬂuence.
+ Sociol.
+ Methodol.
+ 40,
+ 329–393.
+Steglich,
+ C.E.G.,
+ Sinclair,
+ P.,
+ Holliday,
+ J.,
+ Moore,
+ L.,
+ 2012.
+ Actor-based
+ analysis
+ of
+peer
+ inﬂuence
+ in
+ a stop
+ smoking
+ In
+ schools
+ trial
+ (ASSIST).
+ Social
+ Netw.
+ 34
+ (3),
+359–369.
+Voelkle,
+ M.C.,
+ Oud,
+ J.H.L.,
+ Davidov,
+ E.,
+ Schmidt,
+ P.,
+ 2012.
+ An
+ SEM
+ approach
+ to
+continuous
+ time
+ modeling
+ of
+ panel
+ data:
+ relating
+ authoritarianism
+ and
+anomia.
+ Psychol.
+ Methods
+ 17
+ (2),
+ 176–192.
+Wang,
+ P.,
+ Robins,
+ G.L.,
+ Pattison,
+ P.E.,
+ Koskinen,
+ J.H.,
+ 2014.
+ MPNet.
+ Melbourne
+ School
+of
+ Psychological
+ Sciences,
+ Melbourne.
+Wasserman,
+ S.,
+ 1980.
+ Analyzing
+ social
+ networks
+ as
+ stochastic
+ processes.
+ J.
+ Am.
+ Stat.
+Assoc.
+ 75
+ (370),
+ 280–294.
+
+
+--- PAGE BREAK ---
+
