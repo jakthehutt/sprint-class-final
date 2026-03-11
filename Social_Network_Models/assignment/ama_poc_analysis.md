@@ -55,12 +55,14 @@ Algorithms tested:
 2. **Stochastic Block Models (SBM)**: Failed (identified 15 meaningless blocks driven by density/chattiness rather than ideology).
 3. **Spectral Clustering**: **Successful**. Using Eigenvector decomposition of the Normalized Laplacian on the actor-projection matrix (specifically the Fiedler Vector), the algorithm identified 8 statistical blocks based on *gradients of alignment* rather than uniform density.
 
-### Discovered Coalitions ("The 5 Tribes")
-1. **The Manufacturing Core ("Heavy Industry")**: Demands manufacturing capacity and certification.
-2. **The R&D Ecosystem ("Deep Tech")**: Demands material characterisation and test beds.
-3. **The Governance Guards ("Civil Society")**: Demands transparency and Safe & Sustainable by Design (SSbD).
-4. **The Green Market Builders ("Bio-Economy")**: Niche market for zero-carbon material scaling.
-5. **The Regulation Pragmatists ("Bureaucracy Busters")**: Concerned with administrative streamlining.
+### Final Outputs and `coalition_profiles.json`
+The analysis generated 8 structural clusters, mapped to "Tribes". Profiles include actor class composition and concept "lifts" (how heavily a community over-indexes on a concept vs. the average).
+- **Cluster 1 (The Manufacturing Core / Heavy Industry)**: 43 actors. Dominated by Associations (30%) and Science (28%). High lift on SME Support, Defense-Specific Material Applications, Harmonized Certification.
+- **Cluster 7 (The R&D Ecosystem / Deep Tech)**: 41 actors. Heavily dominated by Science (54%). High lift on Data Infrastructure, Shared Research Infrastructure, Digital Twins.
+- **Cluster 3 (The Governance Guards / Civil Society)**: 12 actors. Civil/Public (67%). High lift on Stakeholder Engagement, Testing Protocols, Regulatory Harmonization.
+- **Cluster 0 (The Green Market Builders / Bio-Economy)**: 18 actors. Civil/Public (33%) and Big Industry. High lift on Bio-based Innovation, Market Access, VC Finance.
+- **Cluster 5 (The Regulation Pragmatists / Bureaucracy Busters)**: 30 actors. Associations (43%), Big Industry and SME Industry. High lift on Fast-Track Approvals, Administrative Streamlining, Local Content Targets.
+- Minor clusters (2, 4, 6) capture highly specialized niches (e.g. Cluster 2 - Environmental risks, entirely Associations).
 
 ---
 *Next Steps: Deep dive into the raw code and data structure (data/, scripts/, src/, lib/)*
