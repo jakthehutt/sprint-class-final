@@ -1,0 +1,3 @@
+[submodule "Social_Network_Models/ama-consultation-dna-poc"]
+	path = Social_Network_Models/ama-consultation-dna-poc
+	url = https://github.com/voicing-be/ama-consultation-dna-poc
