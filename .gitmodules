@@ -1,3 +1,6 @@
 [submodule "Social_Network_Models/ama-consultation-dna-poc"]
 	path = Social_Network_Models/ama-consultation-dna-poc
 	url = https://github.com/voicing-be/ama-consultation-dna-poc
+[submodule "Social_Network_Models/assignment/overleaf-SNM-project-2026"]
+	path = Social_Network_Models/assignment/overleaf-SNM-project-2026
+	url = https://github.com/jakthehutt/overleaf-SNM-project-2026.git
