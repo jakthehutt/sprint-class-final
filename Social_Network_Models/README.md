@@ -34,10 +34,24 @@ This directory explores advanced statistical and sociological techniques to anal
   * *Intuition:* Advanced modeling for analyzing specific sequences of interactions and communication between actors in continuous time.
   * *Good at:* Fine-grained temporal data where exact timing matters (e.g. timestamps of emails or interactions), examining rates and discrete events instead of static relationships.
 
+### Model Estimation and Diagnostics
+* **Estimation Techniques:** Approximating parameters for complex models often relies on Markov Chain Monte Carlo Maximum Likelihood Estimation (MCMC-MLE) for ERGMs, or Method of Moments (MoM) for SAOMs.
+* **Goodness of Fit (GOF):** A critical post-estimation step where networks are heavily simulated from the estimated parameters to verify if the properties of the simulated networks closely match the original empirical data.
+
 ### Key Theoretical Concepts
 * **Formalist vs. Relationalist Theory:** The course balances structural formalisms (e.g. strict mathematical properties) with relational sociology (where ties themselves have cultural and social meaning).
+* **Action Theory and Social Capital:** Perspectives focusing on how actors mobilize resources via network ties and occupy advantageous positions (such as brokers bridging structural holes).
+* **Pragmatism and Interactionism:** Viewing networks not merely as static ties but as fluid and dynamic structures of subjective meaning, emphasizing the process of interactions.
 * **Multi-Paradigmatic Perspectives:** Analyzing networks from cognitive, structural, and cultural viewpoints.
 * **Macro vs. Micro Dynamics:** Understanding how aggregate structures emerge from individual decisions (homophily, transitivity) and how global structures constrain individual tie formation.
+
+## 3. Practical Applications & Data Sources
+* **Typical Datasets:** Employs widely available datasets for training and modeling, such as SocioPatterns, the Stanford Large Network Dataset Collection, or empirical subsets (e.g., Faux High School friendships).
+* **Course Applications:** Practical coding labs investigate segregation behaviors in schools, intra-firm communication matrices, and shifts in scientific collaborations over time.
+
+## 4. Course Structure & Deliverables
+* **Lectures & Labs:** Dedicated mixed sessions mapping theoretical concepts into practical code implementations using the R `statnet` and `RSiena` libraries.
+* **Research Output:** Comprehensive empirical investigation on real-world datasets forming the basis of a final research term paper and academic presentation.
 
 ---
 *Note: The slide and literature sets have been processed via OCR for easier reading and full-text search.*
