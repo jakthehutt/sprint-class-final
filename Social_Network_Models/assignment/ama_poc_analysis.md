@@ -65,4 +65,11 @@ The analysis generated 8 structural clusters, mapped to "Tribes". Profiles inclu
 - Minor clusters (2, 4, 6) capture highly specialized niches (e.g. Cluster 2 - Environmental risks, entirely Associations).
 
 ---
-*Next Steps: Deep dive into the raw code and data structure (data/, scripts/, src/, lib/)*
+## Source Code & Architecture Deep Dive
+- **`scripts/build_network.py`**: This script constructs the Master Multiplex Graph. It processes the text classifications into edge weights (SUPPORT = 1, OPPOSE = -1, and discards NEUTRAL). Crucially, Evidence types are automatically attributed a functionally equal +1 weight for "DETECTED" since evidence cannot be "supported" or "opposed". It also integrates the scraped Transparency Register financial metrics directly into the NetworkX actor nodes.
+- **`scripts/analyze_dna_spectral.py`**: Handles the math for the "Bake-Off" winner. First applies the $\phi$ weighting algorithm to the bipartite matrix (Actors $\times$ Concepts). Then it computes a One-Mode Projection ($P = B \times B^T$) resulting in a square Actor-Actor similarity matrix. `sklearn.cluster.SpectralClustering(n_clusters=5)` is executed on this matrix to assign the `coalition_id` to each stakeholder. The Fiedler vector embedding is simultaneously extracted to place concepts on the same topological grid.
+
+## Potential Areas for Future Improvement
+1. **Deeper Semantic Modeling for "Neutral" Positions**: Currently, neutral edges are dropped to isolate political vectors. However, "Neutrality" might signal nuanced hesitation or specific conditional support that is currently lost.
+2. **Dynamic Evidence Tracking**: Integrating a system to mathematically differentiate between "Methodological Assertions" vs. "Empirical Measurements" could yield more nuanced epistemic networks.
+3. **Continuous Data Ingestion**: The pipeline relies on a batch-scraped static dataset. Evolving this into an automated, streaming data intake mechanism via native APIs for continuous monitoring would improve utility.
