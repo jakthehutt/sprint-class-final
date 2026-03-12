@@ -1,6 +1,15 @@
 # Q&A and Source Mapping for Austrian Inequality Trends
 
 ### Slide 1: Accumulated vs. Inherited Wealth & The Migrant Gap
+
+**Question**: Is there a kind of funnel that shows that the middle class is getting less or more due to findings in slide 1?
+**Answer**:
+Yes, the text thoroughly details the **"Attrition and Polarization of the Austrian Middle Class"** (Trend 1) which acts like a downward funnel or an hourglass. The narrative explains that maintaining a middle-class status is "increasingly at odds with empirical realities." Because of wage stagnation and "workplace fissuring," labor alone is rarely enough to stay in the middle class. Instead, the middle class is squeezing/polarizing:
+- **Upward Mobility:** is increasingly restricted only to those who receive **intergenerational wealth transfers (inheritances)**.
+- **Downward Mobility / Precarity:** Those without capital or inheritances (migrants and lower-income natives) face a "tangible risk of sliding downward." 
+
+I have generated a new chart (`slide1b_middle_class_funnel.png`) that maps this structural attrition. It visually details how the historically "Broad Middle" is thinning out into a polarized reality (a squeezed middle funnel).
+
 **Question**: Is there information in the text that shows how much wealth is accumulated and how much inherited? Is the pie chart showing that the top 10% are inheriting most of it and people with migration background not? Can we do a stacked bar chart instead?
 **Answer**:
 The text states that *"Almost half of all total wealth in Austria is inherited"* but does not provide exact total macroeconomic Euro values separating accumulated vs. inherited wealth for the entire country. However, it *does* provide the **Wealth Distribution Cohort** and specific metrics proving the inheritance gap:
