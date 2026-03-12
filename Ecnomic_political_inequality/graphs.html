@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inequality Trends in Austria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-blue-900 via-purple-800 to-pink-700 text-white py-20 px-6 shadow-lg">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">The Architecture of Inequality in Austria</h1>
+            <p class="text-xl md:text-2xl font-light max-w-3xl leading-relaxed text-blue-100">
+                An empirical visualization of the persistence of economic and political divides, mapping the structural forces that shape wealth, income, and opportunity in modern Austria.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-pink-500 inline-block pb-2">1. The Squeezed Middle & Inheritance</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                The traditional pathway to middle-class stability through labor is eroding. Today, sustaining middle-class status is heavily reliant on intergenerational wealth transfers. Because migrants and non-inheritors lack this capital base, wealth concentration accelerates, effectively locking out new participants from economic mobility.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div>
+                    <div class="chart-container">
+                        <canvas id="inheritanceChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">Almost half of all total wealth in Austria is inherited, not earned. Migrants, comprising over 20% of the population, hold less than 5% of inherited assets, creating a structural barrier to homeownership and financial resilience.</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                        <h3 class="text-xl font-bold text-purple-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Progressive Inheritance Tax & Capital Endowment:</strong> Implement a progressive tax on inheritances above &euro;1.5 million. Ring-fence these revenues to fund a universal "starting capital" grant for all young adults regardless of background to level the playing field.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-emerald-500 inline-block pb-2">2. The Wealth vs. Income Paradox</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Austria presents a distinct paradox: its strong welfare state and progressive income tax keep income inequality relatively low. However, it lacks wealth or inheritance taxes, resulting in one of the most unequal distributions of net wealth in the developed world.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div class="order-2 lg:order-1 space-y-6">
+                    <div class="bg-emerald-50 p-6 rounded-xl border-l-4 border-emerald-600">
+                        <h3 class="text-xl font-bold text-emerald-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">The Gini coefficient for income sits at a moderate 0.28. In stark contrast, the wealth Gini is estimated at 0.76. The top 1% commands nearly 40% of all wealth, while the bottom 50% controls roughly 3%.</p>
+                    </div>
+                    <div class="bg-pink-50 p-6 rounded-xl border-l-4 border-pink-600">
+                        <h3 class="text-xl font-bold text-pink-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Net Wealth Tax:</strong> Introduce an annual net wealth tax of 0.5% to 1.5% on net assets exceeding &euro;1 million. Equalize capital gains tax rates with the top marginal income tax brackets to stop disproportionate capital accumulation.</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="chart-container">
+                        <canvas id="giniChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-amber-500 inline-block pb-2">3. The Part-Time Trap & Gender Pay Gap</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Austria's unadjusted gender pay gap remains stubbornly high at around 18%. This is largely driven by structural norms where women overwhelmingly take on unpaid care work, leading to an extremely high rate of female part-time employment, which translates to severe pension gaps later in life.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-amber-50 p-6 rounded-xl border-l-4 border-amber-600">
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">Over 50% of working women in Austria are employed part-time, compared to just 12% of men. This disparity directly correlates with a lack of comprehensive, full-day public childcare infrastructure, particularly outside of Vienna.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Care Infrastructure & Daddy Quotas:</strong> Mandate and fully fund right-to-childcare from age one nationwide. Introduce non-transferable, well-compensated parental leave months exclusively for fathers to shift cultural norms around care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-purple-500 inline-block pb-2">4. Early Tracking & Educational Immobility</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                The Austrian education system separates children into different school tracks at the age of 10. This highly controversial practice strongly correlates educational outcomes with parental socioeconomic status, cementing inequality at a very young age.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div class="order-2 lg:order-1 space-y-6">
+                    <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                        <h3 class="text-xl font-bold text-purple-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">A child whose parents hold university degrees is approximately four times more likely to obtain a tertiary degree themselves compared to a child whose parents only completed mandatory schooling.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-xl border-l-4 border-emerald-600">
+                        <h3 class="text-xl font-bold text-emerald-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Comprehensive Schooling & Index Funding:</strong> Delay student tracking until age 14 or 15 (Gesamtschule model). Implement a strict social-index-based funding model, allocating the best teachers and highest budgets to schools in disadvantaged neighborhoods.</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="chart-container">
+                        <canvas id="eduChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-500 inline-block pb-2">5. Spatial & Regional Divides</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Austria faces a geographic inequality challenge. Western Alpine regions experience high income but severe housing unaffordability due to tourism and speculation. Meanwhile, the capital, Vienna, manages housing better but faces concentrated urban poverty and different labor market integration challenges.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div>
+                    <div class="chart-container">
+                        <canvas id="regionalChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">While median incomes are highest in states like Vorarlberg and Salzburg, the purchasing power is severely diluted by housing costs. Vienna has a lower median income but benefits from massive social housing interventions.</p>
+                    </div>
+                    <div class="bg-amber-50 p-6 rounded-xl border-l-4 border-amber-600">
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Zoning & Decentralization:</strong> Ban vacant property speculation in Alpine regions via strict vacancy taxes. Export Vienna's successful social housing model (Gemeindebau) to western provinces to combat severe market failures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-red-500 inline-block pb-2">6. The Regressive Tax of Inflation</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                The recent cost-of-living crisis has not been felt equally. Inflation acts as a regressive mechanism because lower-income households spend a vastly larger percentage of their budgets on non-discretionary items like food, heating, and rent.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md stat-card">
+                <div class="order-2 lg:order-1 space-y-6">
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-600">
+                        <h3 class="text-xl font-bold text-red-900 mb-2">The Data Reality</h3>
+                        <p class="text-gray-700">The bottom 20% of earners spend over 40% of their income on housing and food. Consequently, their "effective inflation rate" during price shocks was significantly higher than the top 20%, who spend a fraction of their income on basic needs.</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                        <h3 class="text-xl font-bold text-purple-900 mb-2">Policy Intervention</h3>
+                        <p class="text-gray-700"><strong>Targeted Relief & Price Caps:</strong> Abandon broad-brush subsidies (like general energy vouchers). Institute strict, temporary price caps on basic utility tariffs and decoupling rent indexation from raw consumer price indices, tying it instead to median wage growth.</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="chart-container">
+                        <canvas id="inflationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-10 text-center">
+        <p>Data visualization created for analytical purposes. Inspired by trends in economic and political inequality.</p>
+    </footer>
+
+    <script>
+        function wrapText(text, maxChars = 16) {
+            if (text.length <= maxChars) return text;
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i];
+                if ((currentLine + word).length > maxChars && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const commonTooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { family: 'Roboto', size: 12 }
+                    }
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        };
+
+        const inheritanceLabels = [
+            wrapText("Top 10% Inheritors"),
+            wrapText("Remaining Native Population"),
+            wrapText("Migrant Background Population")
+        ];
+        new Chart(document.getElementById('inheritanceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: inheritanceLabels,
+                datasets: [{
+                    data: [65, 30, 5],
+                    backgroundColor: ['#DB2777', '#3B82F6', '#10B981'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                ...commonTooltipConfig,
+                cutout: '60%',
+                plugins: {
+                    ...commonTooltipConfig.plugins,
+                    title: {
+                        display: true,
+                        text: 'Share of Total Inherited Wealth',
+                        font: { size: 16, family: 'Roboto' }
+                    }
+                }
+            }
+        });
+
+        const giniLabels = [wrapText("Income Gini (After Taxes/Transfers)"), wrapText("Wealth Gini (Gross Assets)")];
+        new Chart(document.getElementById('giniChart'), {
+            type: 'bar',
+            data: {
+                labels: giniLabels,
+                datasets: [{
+                    label: 'Gini Coefficient (0 = Equality, 1 = Max Inequality)',
+                    data: [0.28, 0.76],
+                    backgroundColor: ['#10B981', '#DB2777'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                ...commonTooltipConfig,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1
+                    }
+                },
+                plugins: {
+                    ...commonTooltipConfig.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const genderLabels = [
+            wrapText("Men Full-Time"),
+            wrapText("Women Full-Time"),
+            wrapText("Women Part-Time")
+        ];
+        new Chart(document.getElementById('genderChart'), {
+            type: 'bar',
+            data: {
+                labels: genderLabels,
+                datasets: [{
+                    label: 'Average Gross Hourly Wage (€)',
+                    data: [22.50, 18.50, 14.20],
+                    backgroundColor: ['#3B82F6', '#8B5CF6', '#F59E0B'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                ...commonTooltipConfig,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true }
+                },
+                plugins: {
+                    ...commonTooltipConfig.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const eduLabels = [
+            wrapText("Parents: Mandatory Schooling"),
+            wrapText("Parents: Apprenticeship"),
+            wrapText("Parents: University Degree")
+        ];
+        new Chart(document.getElementById('eduChart'), {
+            type: 'bar',
+            data: {
+                labels: eduLabels,
+                datasets: [{
+                    label: 'Probability of Child Attaining Tertiary Degree (%)',
+                    data: [15, 28, 62],
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                ...commonTooltipConfig,
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
+                },
+                plugins: {
+                    ...commonTooltipConfig.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const regionalLabels = [
+            wrapText("Vorarlberg (West)"),
+            wrapText("Salzburg (West)"),
+            wrapText("Lower Austria (East)"),
+            wrapText("Vienna (Capital)")
+        ];
+        new Chart(document.getElementById('regionalChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Regions',
+                        data: [
+                            { x: 38000, y: 15.5 },
+                            { x: 36500, y: 14.8 },
+                            { x: 35000, y: 11.2 },
+                            { x: 31000, y: 10.5 }
+                        ],
+                        backgroundColor: ['#3B82F6', '#F59E0B', '#10B981', '#DB2777'],
+                        pointRadius: 15,
+                        pointHoverRadius: 18
+                    }
+                ]
+            },
+            options: {
+                ...commonTooltipConfig,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Median Annual Net Income (€)' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Average Rent Cost per sqm (€)' }
+                    }
+                },
+                plugins: {
+                    ...commonTooltipConfig.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const index = context.dataIndex;
+                                const rawLabels = ["Vorarlberg", "Salzburg", "Lower Austria", "Vienna"];
+                                return `${rawLabels[index]}: Income €${context.raw.x}, Rent €${context.raw.y}/sqm`;
+                            }
+                        }
+                    },
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const inflationLabels = [
+            wrapText("2021 Q4"),
+            wrapText("2022 Q2"),
+            wrapText("2022 Q4"),
+            wrapText("2023 Q2"),
+            wrapText("2023 Q4")
+        ];
+        new Chart(document.getElementById('inflationChart'), {
+            type: 'line',
+            data: {
+                labels: inflationLabels,
+                datasets: [
+                    {
+                        label: 'Effective Inflation: Bottom 20% Income',
+                        data: [4.5, 9.2, 11.8, 10.5, 6.8],
+                        borderColor: '#EF4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Effective Inflation: Top 20% Income',
+                        data: [4.0, 7.5, 9.1, 8.2, 5.5],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'transparent',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                ...commonTooltipConfig,
+                scales: {
+                    y: {
+                        title: { display: true, text: 'Effective Inflation Rate (%)' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
