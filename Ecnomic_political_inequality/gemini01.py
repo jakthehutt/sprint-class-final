@@ -405,7 +405,11 @@ def create_inequality_presentation():
         "[7] WIFO (2024). Second Year of Recession in Austria: Economic Development and Regional Disparities.",
         "[8] Statistics Austria. Economic output of most federal provinces almost unchanged in 2024.",
         "[9] Kontrast. Das sind die neuen Abgeordneten im Nationalrat.",
-        "[10] ResearchGate (2023). Right-wing populism against diploma democracy: parliamentary elites in Austria."
+        "[10] ResearchGate (2023). Right-wing populism against diploma democracy: parliamentary elites in Austria.",
+        "[11] Stone Center on Socio-Economic Inequality (2022). Under Pressure: The Squeezed Middle Class.",
+        "[12] OECD (2019). Under Pressure: The Squeezed Middle Class.",
+        "[16] European Central Bank (ECB) Economic Bulletin (2022). Energy price developments and their impact on Euro Area households.",
+        "[17] Minneapolis Federal Reserve (2021). The varying pain of inflation across households."
     ]
     
     for src in sources:

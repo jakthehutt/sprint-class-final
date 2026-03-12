@@ -28,13 +28,7 @@ ax.set_xticks([]) # Hide x-axis
 ax.set_title('The Structural Funnel: Attrition of the Austrian Middle Class', fontsize=14, fontweight='bold', pad=20)
 
 # Add annotations to explain the mechanics
-ax.annotate('Upward Mobility restricted\nmostly to Inheritors', xy=(15, 2.5), xytext=(25, 2.8),
-            arrowprops=dict(facecolor='black', shrink=0.05, width=1.5, headwidth=8),
-            fontsize=10, fontweight='bold', color='#3B82F6')
 
-ax.annotate('Downward Mobility / Precarity\n(Labor stagnation, No capital)', xy=(15, 1.5), xytext=(25, 1.2),
-            arrowprops=dict(facecolor='black', shrink=0.05, width=1.5, headwidth=8),
-            fontsize=10, fontweight='bold', color='#EF4444')
 
 ax.legend(loc='lower left')
 
