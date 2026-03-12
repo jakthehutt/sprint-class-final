@@ -66,6 +66,8 @@ wirte in ahigh school student fro austria kidna english; avid we tho, its only o
 
 If you are using the Relationalist view (meaning derives from relationships) and Action Theory (networks are opportunity structures), you can extend the theory section to build richer hypotheses based on your actual variables (`actor_class`, `organization_size`, `concept_id`).
 
+
+
 ### The Theoretical Extension:
 
 #### A. Institutional Isomorphism Theory (For Hypothesis 1 - Attribute Homophily)
@@ -171,7 +173,3 @@ ergm.AME(model = m_homophily, var1 = "b1nodematch.actor_class")
 (ergm.AME(model = m_homophily, var1 = "b1nodematch.actor_class")[[1]] / network.density(net)) * 100
 ```
 This final step translates the abstract log-odds coefficients into easily interpretable percentage increases in tie probability, which is crucial for the Results and Discussion sections of the paper.
-
----
-
-## 5. Drafted Text for `main.tex` (Austrian High School English Style)

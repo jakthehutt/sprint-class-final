@@ -3,9 +3,9 @@ library(readr)
 library(ergMargins)
 
 # 1. Load the exported CSVs
-edges_df <- read_csv("classification_master_refined.csv")
+edges_df <- read_csv("assignment/src/classification_master_refined.csv")
 edges_df
-nodes_df <- read_csv("actor_metadata_refined.csv")
+nodes_df <- read_csv("assignment/src/actor_metadata_refined.csv")
 nodes_df
 
 # Extract feedback_ref from chunk_id
@@ -14,10 +14,12 @@ edges_df$feedback_ref <- sub("_.*", "", edges_df$chunk_id)
 # 2. Filter edges to only include 'SUPPORT' stances
 edges_support <- subset(edges_df, stance == "SUPPORT")
 bipartite_edgelist <- unique(edges_support[, c("feedback_ref", "concept_id")])
+bipartite_edgelist
 
 # 3. Generate Bipartite Network
-# We must ensure the 'node' column in nodes_df contains all Actors AND Concepts
+# ensure the 'node' column in nodes_df contains all Actors AND Concepts
 net <- network::network(bipartite_edgelist, directed = FALSE, bipartite = TRUE)
+net
 
 # Add attributes
 vertex_names <- network::network.vertex.names(net)
