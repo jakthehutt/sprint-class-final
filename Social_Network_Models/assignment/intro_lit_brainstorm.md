@@ -82,19 +82,90 @@ If you are using the Relationalist view (meaning derives from relationships) and
 
 ---
 
-## 4. Operationalization: Testing the Hypotheses with Class Code
+## 4. Operationalization: Detailed Implementation Code
 
 **Data Ingestion Strategy:**
-Instead of using the complex Python pipeline from the `ama-consultation-dna-poc` repository, this project will repurpose the R scripts provided in the class resources (`Social_Network_Models/code`). The AMA repository will *only* be used as the raw data source (e.g., providing the `classification_master_refined.csv` and `actor_metadata_refined.csv` files).
-1.  **Data Loading**: The script `generate_network_function.R` will be adapted to read the CSV files and generate the bipartite edge list between stakeholders and concepts.
-2.  **ERGM Modeling**: The script `Homework Social Networks 2_ERGMs_example_solution.R` already contains the necessary syntax for building `ergm.bipartite` models using the `statnet` package. This script will be modified to test our specific hypotheses.
+This project completely bypasses the Python pipeline from the `ama-consultation-dna-poc` repository for analysis, utilizing only its raw data output (`classification_master_refined.csv` and `actor_metadata_refined.csv`). Instead, we will repurpose the R scripts provided in the class resources (`Social_Network_Models/code`). 
 
-### Testing the Hypotheses (Using R `statnet`/`ergm`)
+### 1. Generating the Bipartite Network
+Using the structure of `generate_network_function (1).R`, we will import our data and construct the `network` object. Because our data is bipartite (Actors $\rightarrow$ Concepts), we must explicitly set `bipartite = TRUE` when initializing the network.
 
-*   **Hypothesis A (Attribute Homophily)**: 
-    *   **How:** Because actors don't connect to actors directly in a bipartite graph, the R code will use a bipartite mixing term or project the graph to a 1-mode network to test `nodematch("actor_class")`. This tests if actors of the same type are statistically more likely to share policy concepts.
-*   **Hypothesis B (Resource Centrality)**:
-    *   **How:** The R script will use the term `b1cov("organization_size")` (or budget) within the `ergm()` function. A positive coefficient means larger organizations have a higher propensity to form ties to multiple concepts.
-*   **Hypothesis C (Echo Chambers/Closure)**:
-    *   **How:** The R script will incorporate the `b4cycle` or `gwb2degree` (Geometrically Weighted Bipartite Degree) terms to test for endogenous network closure, showing if concepts are bundled together.
+```R
+library(statnet)
+library(readr)
 
+# 1. Load the exported CSVs
+edges_df <- read_csv("data/classification_master_refined.csv")
+nodes_df <- read_csv("data/actor_metadata_refined.csv")
+
+# 2. Filter edges to only include 'SUPPORT' stances
+edges_support <- subset(edges_df, stance == "SUPPORT")
+bipartite_edgelist <- edges_support[, c("feedback_ref", "concept_id")]
+
+# 3. Use the class function (adapted for bipartite)
+# We must ensure the 'node' column in nodes_df contains all Actors AND Concepts
+net <- network::network(bipartite_edgelist, directed = FALSE, bipartite = length(unique(edges_support$feedback_ref)))
+
+# Add attributes (conceptually similar to the class generate_network_function)
+index_match <- match(network::network.vertex.names(net), nodes_df$feedback_ref)
+network::set.vertex.attribute(net, "actor_class", as.character(nodes_df$user_type[index_match]))
+network::set.vertex.attribute(net, "organization_size", as.numeric(nodes_df$total_budget[index_match]))
+```
+
+### 2. Testing the Hypotheses (`ergm` Syntax)
+Borrowing the exact syntax structure from `Homework Social Networks 2_ERGMs_example_solution.R` (specifically Tasks 3, 4, and 5), we will fit exponential random graph models.
+
+#### Testing Hypothesis A (Attribute Homophily)
+*Are actors of the same `actor_class` statistically more likely to share ties to the same core policy concepts?*
+*   **The Code:** To test homophily in a bipartite network where actors (Mode 1) don't connect directly to each other, we use a bipartite-specific node match term. The term `b1nodematch` counts how many distinct concepts two actors of the same class share.
+```R
+# Testing Attribute Homophily
+m_homophily <- ergm(net ~ edges + b1nodematch("actor_class"),
+                    control = control.ergm(main.method = "Stochastic"),
+                    verbose = TRUE)
+summary(m_homophily)
+```
+*   **Interpretation:** If the coefficient for `b1nodematch.actor_class` is positive and significant, Hypothesis A is strictly confirmed.
+
+#### Testing Hypothesis B (Resource Centrality)
+*Do actors with a larger `organization_size` (budget) exhibit higher degree centrality (support more concepts)?*
+*   **The Code:** We test the main effect of a continuous nodal covariate for Mode 1 (Actors) using `b1cov`.
+```R
+# Testing Resource Centrality
+m_resources <- ergm(net ~ edges + b1cov("organization_size"),
+                    control = control.ergm(main.method = "Stochastic"),
+                    verbose = TRUE)
+summary(m_resources)
+```
+*   **Interpretation:** A positive, significant coefficient means that for every additional unit of budget, the log-odds of forming an edge (endorsing a concept) increases, confirming large groups monopolize the discourse space.
+
+#### Testing Hypothesis C (Structural Equivalence / Echo Chambers)
+*If actors share one concept, do they disproportionately share a second concept, creating ideological echo chambers?*
+*   **The Code:** As highlighted in the class homework for triadic closure using `gwesp`, for bipartite networks we look for closure in the form of 4-cycles (squares/echo chambers) using `b4cycle` or Geometrically Weighted Bipartite Degree (`gwb2degree`).
+```R
+# Testing Structural Equivalence
+m_closure <- ergm(net ~ edges + b4cycle,
+                  control = control.ergm(main.method = "Stochastic"),
+                  verbose = TRUE)
+summary(m_closure)
+
+# Evaluate Goodness of Fit as taught in class (Task 6)
+plot(gof(m_closure))
+```
+*   **Interpretation:** A positive `b4cycle` means closure occurs more than random chance would predict. Concepts are bundled into ideological suites.
+
+### 3. Calculating Marginal Effects
+As demonstrated in Task 7 and 8 of the class solution:
+```R
+library(ergMargins)
+# Calculate Average Marginal Effects (AME)
+ergm.AME(model = m_homophily, var1 = "b1nodematch.actor_class")
+
+# Scale at baseline probability
+(ergm.AME(model = m_homophily, var1 = "b1nodematch.actor_class")[[1]] / network.density(net)) * 100
+```
+This final step translates the abstract log-odds coefficients into easily interpretable percentage increases in tie probability, which is crucial for the Results and Discussion sections of the paper.
+
+---
+
+## 5. Drafted Text for `main.tex` (Austrian High School English Style)
