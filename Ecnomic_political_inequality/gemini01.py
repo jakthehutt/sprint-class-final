@@ -396,15 +396,15 @@ def create_inequality_presentation():
     tf.clear()
     
     sources = [
-        "[1] Institute for Fiscal Studies (2023). Inequality in Austria in recent decades.",
-        "[2] Stone Center on Socio-Economic Inequality (2022). Under Pressure: The Squeezed Middle Class.",
-        "[3] Oesterreichische Nationalbank (OeNB) (2024). Eurosystem Household Finance and Consumption Survey (HFCS) 2023.",
-        "[4] JRC Publications Repository (2024). Inheritances in Austria: A model estimation of intergenerational wealth transfers.",
-        "[5] PubMed (2022). A Tale of Integration? The Migrant Wealth Gap in Austria.",
-        "[6] Statistics Austria (2024). Gender pay gap in Austria at 17.6%.",
-        "[7] OECD (2025). Gender pension gap: Pensions at a Glance.",
-        "[8] WIFO (2024). Second Year of Recession in Austria: Economic Development and Regional Disparities.",
-        "[9] Paris-Lodron-University Salzburg (2023). Perceived Deprivation and Voter Turnout in Austria.",
+        "[1] Oesterreichische Nationalbank (OeNB) (2024). Eurosystem Household Finance and Consumption Survey (HFCS) 2023.",
+        "[2] PubMed (2022). A Tale of Integration? The Migrant Wealth Gap in Austria.",
+        "[3] OECD Economic Surveys: Austria 2024.",
+        "[4] Institute for Fiscal Studies (2023). Persistent low inequality despite compositional shifts in Austria.",
+        "[5] Promoting social mobility in Austria - OECD.",
+        "[6] Education and Training Monitor 2025 – Austria.",
+        "[7] WIFO (2024). Second Year of Recession in Austria: Economic Development and Regional Disparities.",
+        "[8] Statistics Austria. Economic output of most federal provinces almost unchanged in 2024.",
+        "[9] Kontrast. Das sind die neuen Abgeordneten im Nationalrat.",
         "[10] ResearchGate (2023). Right-wing populism against diploma democracy: parliamentary elites in Austria."
     ]
     
