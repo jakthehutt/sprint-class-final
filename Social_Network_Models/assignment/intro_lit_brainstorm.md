@@ -117,7 +117,7 @@ Borrowing the exact syntax structure from `Homework Social Networks 2_ERGMs_exam
 
 #### Testing Hypothesis A (Attribute Homophily)
 *Are actors of the same `actor_class` statistically more likely to share ties to the same core policy concepts?*
-*   **The Code:** To test homophily in a bipartite network where actors (Mode 1) don't connect directly to each other, we use a bipartite-specific node match term. The term `b1nodematch` counts how many distinct concepts two actors of the same class share.
+*   **The Code:** To test homophily in a bipartite network, we use a bipartite-specific node match term `b1nodematch`.
 ```R
 # Testing Attribute Homophily
 m_homophily <- ergm(net ~ edges + b1nodematch("actor_class"),
@@ -125,7 +125,10 @@ m_homophily <- ergm(net ~ edges + b1nodematch("actor_class"),
                     verbose = TRUE)
 summary(m_homophily)
 ```
-*   **Interpretation:** If the coefficient for `b1nodematch.actor_class` is positive and significant, Hypothesis A is strictly confirmed.
+*   **How to robustly confirm Hypothesis A (Multiple Ways):**
+    1.  **Coefficient Significance (The Standard Check):** The summary output will provide a p-value for the `b1nodematch.actor_class` term. If the coefficient is positive and $p < 0.05$, the hypothesis is supported at a statistically significant level.
+    2.  **Average Marginal Effects (The Practical Reality Check):** Statistical significance doesn't always guarantee *practical* relevance in large datasets. By using `ergm.AME(m_homophily, "b1nodematch.actor_class")`, we calculate the exact percentage change in probability. If the probability of a tie increases robustly (e.g., +15% over baseline density), we confirm the theory has high real-world explanatory power.
+    3.  **Cross-Model Stability (The Confounder Check):** Are we sure this is true homophily and not just because big organizations happen to be associations? We verify this by running a multivariate ERGM adding `b1cov("organization_size")` into the same model. If `b1nodematch` remains significant even when controlling for size, we can confidently claim the effect is robust and not a spurious correlation.
 
 #### Testing Hypothesis B (Resource Centrality)
 *Do actors with a larger `organization_size` (budget) exhibit higher degree centrality (support more concepts)?*
@@ -137,22 +140,25 @@ m_resources <- ergm(net ~ edges + b1cov("organization_size"),
                     verbose = TRUE)
 summary(m_resources)
 ```
-*   **Interpretation:** A positive, significant coefficient means that for every additional unit of budget, the log-odds of forming an edge (endorsing a concept) increases, confirming large groups monopolize the discourse space.
+*   **How to robustly confirm Hypothesis B (Multiple Ways):**
+    1.  **Main ERGM Effect:** A significantly positive parameter for `b1cov.organization_size` confirms that log-odds of tie formation scale predictably with an actor's budget.
+    2.  **Goodness of Fit on Degree Distributions (The Structural Quality Check):** The ERGM might show statistical significance, but does the model actually capture the massive inequality we see in the network? By running `plot(gof(m_resources))`, we check if the simulated bipartite degree distribution matches the actual network's heavy-tailed degree distribution. If the simulated model lines tightly track the observed black line, we are highly confident the model is structurally sound.
+    3.  **External Bivariate Correlation (The Baseline Check):** Beyond ERGMs, we can compute the correlation exactly via `cor.test()`. By comparing an actor's raw network out-degree stringently with their budget using a Spearman rank-correlation test outside the ERGM framework, we can double-verify. If both ERGMs and non-ERGM rank tests are positive, the finding is bulletproof.
 
 #### Testing Hypothesis C (Structural Equivalence / Echo Chambers)
 *If actors share one concept, do they disproportionately share a second concept, creating ideological echo chambers?*
-*   **The Code:** As highlighted in the class homework for triadic closure using `gwesp`, for bipartite networks we look for closure in the form of 4-cycles (squares/echo chambers) using `b4cycle` or Geometrically Weighted Bipartite Degree (`gwb2degree`).
+*   **The Code:** We look for closure in the form of 4-cycles (squares/echo chambers) using `b4cycle`.
 ```R
 # Testing Structural Equivalence
 m_closure <- ergm(net ~ edges + b4cycle,
                   control = control.ergm(main.method = "Stochastic"),
                   verbose = TRUE)
 summary(m_closure)
-
-# Evaluate Goodness of Fit as taught in class (Task 6)
-plot(gof(m_closure))
 ```
-*   **Interpretation:** A positive `b4cycle` means closure occurs more than random chance would predict. Concepts are bundled into ideological suites.
+*   **How to robustly confirm Hypothesis C (Multiple Ways):**
+    1.  **Endogenous Effect Significance:** If `b4cycle` is positive and significant, it proves that ties tend to cluster more tightly than a completely random network, indicating endogenous ideological bundling.
+    2.  **Alternative Structural Terms (`gwb2degree`) to prevent Degeneracy:** Sometimes pure 4-cycles (`b4cycle`) cause ERGMs to mathematically fail to converge (a phenomenon known as "degeneracy"). A robust way to confirm the echo chamber hypothesis without crashing the model is substituting `b4cycle` with Geometrically Weighted Bipartite Degree (`gwb2degree` or `gwb1degree`). If the Geometrically Weighted term is significant, the structural closure hypothesis is confirmed in an alternate robust specification.
+    3.  **Model Deviance & AIC Comparison (The Optimization Check):** We can use an ANOVA test specifically for ERGMs (`anova(model_without_closure, m_closure)`). If adding the `b4cycle` term significantly decreases the Residual Deviance and AIC score compared to a basic edges-only model, we are mathematically sure the closure mechanism drastically improves our global understanding of the network.
 
 ### 3. Calculating Marginal Effects
 As demonstrated in Task 7 and 8 of the class solution:
