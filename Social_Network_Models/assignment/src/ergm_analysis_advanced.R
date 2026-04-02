@@ -69,13 +69,25 @@ network::set.vertex.attribute(net, "country", country_vals)
 #    still robustly measuring structural variance and echo chamber effects.
 
 cat("\nEstimating Multivariate Bipartite ERGM...\n")
-m_multivariate <- ergm(net ~ edges + 
+# STABILITY NOTE: Using MCMCMLE (not Stochastic) for reliable convergence.
+# Two-pronged stability strategy:
+#   1. GW-degree terms (gwb1degree/gwb2degree) prevent degeneracy by penalizing hubs.
+#   2. MCMCMLE with large burn-in ensures the MCMC chain finds the true stationary
+#      distribution rather than a local trap. Stochastic approximation is faster but
+#      is prone to sign-flipping and coefficient explosion on dense bipartite networks.
+m_multivariate <- ergm(net ~ edges +
                  b1nodematch("actor_class") +   # Hyp 1: Attribute Homophily
                  b1cov("organization_size") +   # Hyp 2: Resource Centrality
                  b1nodematch("country") +       # Exogenous Control: Geographic homophily
                  gwb1degree(0.5, fixed=TRUE) +  # Endogenous Control: Actor degree distribution (hub penalty)
                  gwb2degree(0.5, fixed=TRUE),   # Endogenous Control: Concept popularity distribution
-    control = control.ergm(main.method = "Stochastic"),
+    control = control.ergm(
+        main.method    = "MCMCMLE",   # Full MCMC-MLE; more stable than Stochastic on dense nets
+        MCMC.burnin    = 100000,      # Long burn-in to escape local traps before sampling
+        MCMC.samplesize = 10000,      # Larger sample for accurate gradient estimates
+        MCMC.interval  = 1000,        # Thin to reduce autocorrelation between samples
+        MCMLE.maxit    = 60           # Allow more EM iterations to reach convergence
+    ),
     verbose = TRUE
 )
 
@@ -84,11 +96,19 @@ summary(m_multivariate)
 
 # Step 4: Model Diagnostics & Marginal Effects
 
-# Evaluate the Goodness of Fit (Simulated vs Observed distributions)
-# Using `gwb1degree` and `gwb2degree` should resolve the catastrophic failure
-# seen previously in the pure cycle(4) minimum geodesic distance plots.
+# Check MCMC convergence (Geweke + autocorrelation plots).
+# Look for: low autocorrelation at all lags, Geweke z-scores within +/-2.
+cat("\nRunning MCMC Diagnostics...\n")
+mcmc.diagnostics(m_multivariate)
+
+# Evaluate the Goodness of Fit (Simulated vs Observed distributions).
+# Save the plot to fig/ for inclusion in the paper.
+cat("\nRunning Goodness of Fit assessment (100 simulations)...\n")
 gof_diag <- gof(m_multivariate)
+png("fig/gof_plot.png", width = 1200, height = 800, res = 120)
 plot(gof_diag)
+dev.off()
+cat("GOF plot saved to fig/gof_plot.png\n")
 
 # Calculate Average Marginal Effects (AME) for the main theoretical variable
 # in the context of the full multivariate specification.
